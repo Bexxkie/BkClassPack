@@ -1,0 +1,95 @@
+name: BkClassPack
+version: 5.9
+description: Enhances the vanilla experience by adding unique abilities across a variety of different classes.
+author: Bexxkie [Brian]
+main: com.bexxkie.bkcp.BkCP
+softdepend: [LibsDisguises, ProtocolLib]
+commands:
+  bcp:
+       description: command base
+  bcp SetParticles:
+       description: apply player(self) particleEffects (speed, count, radius)
+  bcp RunParticles:
+       description: toggle player(self) particleEffects (true,false)
+  bcp SetSpawn:
+       description: set spawn for a class (current location)
+  bcp InvitePack:
+       description: invite users to your pack 
+  bcp CreatePack:
+       description: create a new pack 
+  bcp EditPack:
+       description: edit a pack if you're the leader 
+  bcp GetPack:
+       description: get members of a pack, or pack names
+  bcp RemovePack:
+       description: remove a pack
+  bcp LeavePack:
+       description: leave a pack
+  bcp JoinPack:
+       description: join a pack, if you are invited
+  bcp Stop:
+       description: stop the plugin from running (op+)
+  bcp ClassInfo:
+       description: get a classBook
+  bcp SpellBook:
+       description: get a spellBook
+  bcp SetClass:
+       description: set a players class
+  bcp GetNicks:
+       description: get the nicknames on your server
+  bcp SetGender:
+       description: set the gender of a player, or yourself.
+permissions:
+  bcp.*:
+      description: masterNode
+      children:
+          bcp.admin: true
+          bcp.mod: true
+      default: op
+  bcp.dev:
+      description: allow use of devCommands
+      default: op
+  bcp.admin:
+      description: adminNode
+      children:
+          bcp.mod: true
+          OPpack: true
+      default: op
+  bcp.mod:
+      description: moderatorNode
+      children:
+         bcp.color: true
+         bcp.particles: true
+         bcp.vip: true
+         bcp.cpack: true
+         bcp.class: true
+         bcp.pvp: true
+      default: op
+  bcp.class:
+      description: allow command class
+      default: op
+  bcp.color:
+      description: allow colours
+      default: true
+  bcp.particles:
+      description: allow particleEffects
+      default: op
+  bcp.vip:
+      description: allow access to vip classes
+      default: op
+  bcp.cpack:
+      description: allow creation and moderation of a pack
+      default: op
+  bcp.OPpack:
+      description: allow deletion and editing of all packs
+      default: false
+  bcp.pvp:
+      description: allow toggling of PVP
+      default: false
+  bcp.setGender:
+      description: allow (self) gender manipulation
+      default: op
+  bcp.setGenderElse:
+      description: allow (other) gender manipulation
+      default: op
+             

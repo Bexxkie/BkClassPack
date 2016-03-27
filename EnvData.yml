@@ -1,0 +1,71 @@
+# Environment config for Timberwolf class.
+# unComment to add biome enable that biome in buff/deBuff methods.
+# 
+# replace 'null' with EITHER a deBuff or buff (ONE PER BIOME)
+# buffs: regen | speed | camouflage,
+# deBuffs: noRegen | slow | slowMine
+#
+#
+enabled: false
+biomes:
+# - SWAMPLAND, null
+# - FOREST, null
+# - TAIGA, null
+# - DESERT, null
+# - PLAINS, null
+# - HELL, null
+# - SKY, null
+# - OCEAN, null
+# - RIVER, null
+# - EXTREME_HILLS, null
+# - FROZEN_OCEAN, null
+# - FROZEN_RIVER, null
+# - ICE_PLAINS, null
+# - ICE_MOUNTAINS, null
+# - MUSHROOM_ISLAND, null
+# - MUSHROOM_SHORE, null
+# - BEACH, null
+# - DESERT_HILLS, null
+# - FOREST_HILLS, null
+# - TAIGA_HILLS, null
+# - SMALL_MOUNTAINS, null
+# - JUNGLE, null
+# - JUNGLE_HILLS, null
+# - JUNGLE_EDGE, null
+# - DEEP_OCEAN, null
+# - STONE_BEACH, null
+# - COLD_BEACH, null
+# - BIRCH_FOREST, null
+# - BIRCH_FOREST_HILLS, null
+# - ROOFED_FOREST, null
+# - COLD_TAIGA, null
+# - COLD_TAIGA_HILLS, null
+# - MEGA_TAIGA, null
+# - MEGA_TAIGA_HILLS, null
+# - EXTREME_HILLS_PLUS, null
+# - SAVANNA, null
+# - SAVANNA_PLATEAU, null
+# - MESA, null
+# - MESA_PLATEAU_FOREST, null
+# - MESA_PLATEAU, null
+# - SUNFLOWER_PLAINS, null
+# - DESERT_MOUNTAINS, null
+# - FLOWER_FOREST, null
+# - TAIGA_MOUNTAINS, null
+# - SWAMPLAND_MOUNTAINS, null
+# - ICE_PLAINS_SPIKES, null
+# - JUNGLE_MOUNTAINS, null
+# - JUNGLE_EDGE_MOUNTAINS, null
+# - COLD_TAIGA_MOUNTAINS, null
+# - SAVANNA_MOUNTAINS, null
+# - SAVANNA_PLATEAU_MOUNTAINS, null
+# - MESA_BRYCE, null
+# - MESA_PLATEAU_FOREST_MOUNTAINS, null
+# - MESA_PLATEAU_MOUNTAINS, null
+# - BIRCH_FOREST_MOUNTAINS, null
+# - BIRCH_FOREST_HILLS_MOUNTAINS, null
+# - ROOFED_FOREST_MOUNTAINS, null
+# - MEGA_SPRUCE_TAIGA, null
+# - EXTREME_HILLS_MOUNTAINS, null
+# - EXTREME_HILLS_PLUS_MOUNTAINS, null
+# - MEGA_SPRUCE_TAIGA_HILLS, null

@@ -1,0 +1,155 @@
+#Allowed values:
+# heal(I-IV) 
+# flame(I-III)
+# blink 
+# save
+# recall[I-II]
+# courage 
+# curePoison(I-II) 
+# cureAll 
+# healTarget(I-II)
+# healAura 
+# frost(I-III) 
+# shadowBeam(I-III) 
+# fireBall 
+# fireBlast 
+# flameAura 
+# iceSpike 
+# iceBlast 
+# frostAura 
+# shadowBolt 
+# shadowBlast 
+# shadowAura 
+# lifeDrain(I-II)
+# feed(I-II)
+# throwCake
+# throwFish
+# tntRain
+# creeperRain
+# potionRain
+# miningBuff
+#
+# save/recall; save = save current location; recall== tp to 'save' location;
+#
+#
+#Do not use \t (TAB key) when adding new items
+#When setting multilevel spell, do <SpellName><I,II,III)
+#IE healI
+
+#default branches any MagicUser may access these
+default: 
+   spells:
+     - blink
+     - healI
+     - flameI
+     - frostI
+     - shadowBeamI
+     - miningBuff
+protector:
+   spells:
+     - healI
+     - healTargetI
+     - curePoisonI
+     - frostI
+     - blink
+     - save
+     - recallI
+healer:
+   spells:
+     - healIII
+     - healTargetII
+     - healAura
+     - cureAll
+     - frostI
+     - blink
+     - save
+     - recallII
+illusionist:
+   spells:
+     - healI
+     - healTargetI
+     - curePoisonI
+     - courage
+     - frostI
+     - blink
+     - save
+     - recallII
+destruction:
+   spells:
+     - flameII
+     - frostII
+     - shadowBeamII
+     - healI
+     - blink
+     - save
+     - recall
+fire:
+   spells:
+     - flameIII
+     - fireBall
+     - fireBlast
+     - fireAura
+     - healI
+     - blink
+     - save
+     - recallII
+ice:
+   spells:
+     - frostIII
+     - iceSpike
+     - iceBlast
+     - frostAura
+     - healI
+     - blink
+     - save
+     - recallII
+shadow:
+   spells:
+     - shadowBeamIII
+     - shadowBolt
+     - shadowBlast
+     - shadowAura
+     - healI
+     - blink
+     - save
+     - recallII
+#Alicorn Branches, should only be used by 'Alicorn'
+ac:
+   default:
+      spells:
+         - blink
+         - flameI
+         - healI
+   corrupter:
+      spells:
+         - shadowBeamIII
+         - shadowBolt
+         - shadowBlast
+         - shadowAura
+         - lifeDrainII
+         - feedII
+   saviour:
+      spells:
+        - healIV
+        - healTargetII 
+        - cureAll
+        - healAura
+        - frostAura
+        - fireAura
+#Changeling spells
+ch:
+   default:
+      spells:
+        - lifeDrainII
+        - shadowBeamII
+        - shadowBolt
+        - shadowAura
+#Draconequus spells
+dc:
+   default:
+      spells:
+        - throwCake
+        - tntRain
+        - creeperRain
+        - throwFish
+        - potionRain

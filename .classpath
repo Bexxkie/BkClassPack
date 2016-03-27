@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/ParticleEffect Library"/>
+	<classpathentry kind="lib" path="B:/PROGRAMMING/JAVA/Decompiles/Spigot_1.9/Bukkit/target/bukkit-1.9-R0.1-SNAPSHOT-shaded.jar"/>
+	<classpathentry kind="lib" path="B:/PROGRAMMING/JAVA/Decompiles/Spigot_1.9/CraftBukkit/target/craftbukkit-1.9-R0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="B:/PROGRAMMING/JAVA/Eclipse-References/LibsDisguises19B.jar"/>
+	<classpathentry kind="lib" path="B:/PROGRAMMING/JAVA/Eclipse-References/ProtocolLib19.jar"/>
+	<classpathentry kind="lib" path="B:/PROGRAMMING/JAVA/Eclipse-References/Essentials-2.x-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="B:/PROGRAMMING/JAVA/Eclipse-References/EssentialsProtect-2.x-SNAPSHOT.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

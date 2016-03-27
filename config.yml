@@ -1,0 +1,34 @@
+vip:                        # Set classes accessable only by 'vip' permission holders. uncomment desired classes.
+# - Unicorn                 # default signText: [Unicorn]    (remove [] to add to vip list)
+# - Pegasus                 # default signText: [Pegasus]    (remove [] to add to vip list)
+# - Earth                   # default signText: [Earth]      (remove [] to add to vip list)
+# - Alicorn                 # default signText: [Alicorn]    (remove [] to add to vip list)
+# - Changeling              # default signText: [Changeling] (remove [] to add to vip list)
+# - Dragon                  # default signText: [Dragon]     (remove [] to add to vip list)
+# - TimberWolf              # default signText: [TimberWolf] (remove [] to add to vip list)
+# - Griffon                 # default signText: [Griffon]    (remove [] to add to vip list)
+# - Draconequus             # default signText: [Draconequus](remove [] to add to vip list)
+Spawn-Option:
+  Cspawn-Messages: false
+  
+Class-Options:              # Enable or Disable classes from here
+  Unicorn-Enabled: true     # default true ## CA.ID = 1
+  Pegasus-Enabled: true     # default true ## CA.ID = 2
+  Earth-Enabled: true       # default true ## CA.ID = 3
+  Alicorn-Enabled: true     # default true ## CA.ID = 4
+  Changeling-Enabled: true  # default true ## CA.ID = 5
+  Dragon-Enabled: true      # default true ## CA.ID = 6
+  TimberWolf-Enabled: true  # default true ## CA.ID = 7
+  Griffon-Enabled: true     # default true ## CA.ID = 8
+  Draconequus-Enabled: true # default true ## CA.ID = 9
+Module: 
+  upgrade: false            # upgrade from p3p+
+  togglePVP: true           # Allow PVP toggling
+  gender: true              # Allow 'gender' discrimination 
+  Sfx:                      # player particle effects; set global maximum values.
+    Enabled: false          # enable playerParticle effects?           
+    maxSpeed: 5.0           # default 5.0 (Double)   (speed)
+    maxCount: 25            # default 25   (Integer) (particles)
+    maxRadius: 3.0          # default 3.0  (Double)  (blocks)
+    emitRate: 5             # default 5    (Integer) (in ticks)
+  Economy-Enabled: false    # !!experimental do not activate
