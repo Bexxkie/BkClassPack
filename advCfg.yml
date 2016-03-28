@@ -3,9 +3,9 @@ classDataAutoSave: 3600000     # Time to autoSave classData 'deft 3600000' (in m
                                
 upgrade: false                 # upgrade from P3Pplus
 fxpTarget: 100                 # required flight exp to level up
-flightCost: .5                  # required levels to creativeFly or energyDrain(x2)/s if "overPowerFlying==true"
+flightCost: .5                 # energyDrain(x2)/s 
+cFlightCost: 10                # required levels to creativeFly
 flightTime: 3600               # time to creativeFly seconds (default; 1h)
-overPowerFlying: false         # easy flight
 SignText:                      # directly affects vip classControl (see config.yml>vip)
   Unicorn: [Unicorn]           # default signText: [Unicorn]    (Must have [] encapsulating String)
   Pegasus: [Pegasus]           # default signText: [Pegasus]    (Must have [] encapsulating String)
@@ -23,6 +23,7 @@ Classes:                         # Determine default classValues
   Pegasus:                       #------------------------------------------------------------------
     maxEnergy: 50.0  #'deft 50'  # Starting energy (increases with levels)
     maxHealth: 20.0  #'deft 20'  # Maximum health as this class (default game value = 20)
+    flight: true     #'deft true'# true/false should use normal flight(true) vs my method (false)
   Earth:                         #------------------------------------------------------------------
     maxEnergy: 50.0  #'deft 50'  # Starting energy (increases with levels)
     maxHealth: 30.0  #'deft 30'  # Maximum health as this class (default game value = 20)
@@ -30,9 +31,11 @@ Classes:                         # Determine default classValues
     maxEnergy: 75.0  #'deft 75'  # Starting energy (increases with levels)
     maxMana: 75.0    #'deft 75'  # Starting mana (increases with levels)
     maxHealth: 30.0  #'deft 30'  # Maximum health as this class (default game value = 20)
+    flight: true     #'deft true'# true/false should use normal flight(true) vs my method (false)
   Dragon:                        #------------------------------------------------------------------
     maxEnergy: 75.0  #'deft 75'  # Starting energy (increases with levels)
     maxHealth: 30.0  #'deft 30'  # Maximum health as this class (default game value = 20)
+    flight: true     #'deft true'# true/false should use normal flight(true) vs my method (false)
   TimberWolf:                    #------------------------------------------------------------------
     maxEnergy: 50.0  #'deft 50'  # Starting energy (increases with levels)
     maxHealth: 15.0  #'deft 15'  # Maximum health as this class (default game value = 20)
@@ -41,43 +44,46 @@ Classes:                         # Determine default classValues
   Griffon:                       #------------------------------------------------------------------
     maxEnergy: 75.0  #'deft 75'  # Starting energy (increases with levels)
     maxHealth: 30.0  #'deft 30'  # Maximum health as this class (default game value = 20)
+    flight: true     #'deft true'# true/false should use normal flight(true) vs my method (false)
   Draconequus:                   #------------------------------------------------------------------
     maxEnergy: 75.0  #'deft 75'  # Starting energy (increases with levels)
     maxMana: 75.0    #'deft 75'  # Starting mana (increases with levels)
     maxHealth: 30.0  #'deft 30'  # Maximum health as this class (default game value = 20)
+    flight: true     #'deft true'# true/false should use normal flight(true) vs my method (false)
   Changeling:                    #------------------------------------------------------------------
-   maxEnergy: 50.0   #'deft 50'  # Starting energy (increases with levels)
-   maxMana: 75.0     #'deft 75'  # Starting mana (increases with levels)
-   maxHealth: 25.0   #'deft 25'  # Maximum health as this class (default game value = 20)
-   disguises:
-    default:
-    #  uncomment desired disguises 
-     - Bat
-     - Blaze
-     - CaveSpider
-    # - Chicken
-    # - Cow
-    # - Creeper
-    # - Enderman
-    # - Endermite
-    # - Guardian
-    # - EntityHorse
-    # - IronGolem
-    # - LavaSlime
-    # - Pig
-    # - PigZombie
-    # - Rabbit
-    # - Sheep
-    # - Silverfish
-    # - Skeleton
-    # - Slime
-    # - Snowman
-    # - Spider
-    # - Squid
-    # - Villager
-    # - Witch
-    # - Wolf
-    # - Zombie
+    maxEnergy: 50.0   #'deft 50'  # Starting energy (increases with levels)
+    maxMana: 75.0     #'deft 75'  # Starting mana (increases with levels)
+    maxHealth: 25.0   #'deft 25'  # Maximum health as this class (default game value = 20)
+    flight: true     #'deft true'# true/false should use normal flight(true) vs my method (false)
+    disguises:
+     default:
+     #  uncomment desired disguises 
+      - Bat
+      - Blaze
+      - CaveSpider
+     # - Chicken
+     # - Cow
+     # - Creeper
+     # - Enderman
+     # - Endermite
+     # - Guardian
+     # - EntityHorse
+     # - IronGolem
+     # - LavaSlime
+     # - Pig
+     # - PigZombie
+     # - Rabbit
+     # - Sheep
+     # - Silverfish
+     # - Skeleton
+     # - Slime
+     # - Snowman
+     # - Spider
+     # - Squid
+     # - Villager
+     # - Witch
+     # - Wolf
+     # - Zombie
 Prefixes:
   Unicorn:
      default: "[&6Unicorn&f] "

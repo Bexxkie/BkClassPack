@@ -25,6 +25,7 @@ implements Listener
 	public static boolean cool;
 	public static Double intCool;
 	public static Double lCost = BkCP.advCfg.getConfig().getDouble("flightCost");
+	public static Double levCost = BkCP.advCfg.getConfig().getDouble("cFlightCost");
 	public static Double fTime = BkCP.advCfg.getConfig().getDouble("flightTime");
 	@SuppressWarnings("deprecation")
 	@EventHandler
@@ -34,10 +35,11 @@ implements Listener
 		if(BkCP.onlinePlayers.get(e.getPlayer().getName())instanceof Flier)
 		{
 			Player p = e.getPlayer();
-			if(p.isSneaking()&&p.getItemInHand().getType().equals(Material.FEATHER)&&p.getItemInHand().hasItemMeta()&&p.getItemInHand().getItemMeta().hasDisplayName()&&p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("wings")&&p.getLevel()>=lCost)
+			if(p.isSneaking()&&p.getItemInHand().getType().equals(Material.FEATHER)&&p.getItemInHand().hasItemMeta()&&p.getItemInHand().getItemMeta().hasDisplayName()&&p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("wings")&&p.getLevel()>=levCost)
 			{
-				p.setLevel((int) (p.getLevel()-lCost));
-				if(p.getItemInHand().getAmount()>1){
+				p.setLevel((int) (p.getLevel()-levCost));
+				if(p.getItemInHand().getAmount()>1)
+				{
 					p.getItemInHand().setAmount(p.getItemInHand().getAmount()-1);
 				}
 				else{
@@ -68,24 +70,33 @@ implements Listener
 			{
 				if(e.getAction()==Action.RIGHT_CLICK_AIR||e.getAction()==Action.RIGHT_CLICK_BLOCK)
 				{
-					if(((Flier)BkCP.onlinePlayers.get(e.getPlayer().getName())).getEnergy()>2)
+					for(String s: BkCP.flightMap.keySet())
 					{
-						((Flier)BkCP.onlinePlayers.get(e.getPlayer().getName())).setEnergy(((Flier)BkCP.onlinePlayers.get(e.getPlayer().getName())).getEnergy()-.05);
-						((Flier)BkCP.onlinePlayers.get(e.getPlayer().getName())).showHud();
-						Vector v = e.getPlayer().getVelocity();
-						Vector d = e.getPlayer().getLocation().getDirection();
-						if(e.getPlayer().getLocation().getY()>115)
+						if(BkCP.playerClass.getConfig().getString(p.getUniqueId().toString()+".class").equalsIgnoreCase(s))
 						{
-							d.multiply(2.5);	
-						}else if(e.getPlayer().getLocation().getBlockY()<50){
-							d.multiply(.5);
-						}else{
-							d.multiply(1);
+							if(BkCP.flightMap.get(s)==false)
+							{	
+								if(((Flier)BkCP.onlinePlayers.get(e.getPlayer().getName())).getEnergy()>2)
+								{
+									((Flier)BkCP.onlinePlayers.get(e.getPlayer().getName())).setEnergy(((Flier)BkCP.onlinePlayers.get(e.getPlayer().getName())).getEnergy()-.05);
+									((Flier)BkCP.onlinePlayers.get(e.getPlayer().getName())).showHud();
+									Vector v = e.getPlayer().getVelocity();
+									Vector d = e.getPlayer().getLocation().getDirection();
+									if(e.getPlayer().getLocation().getY()>115)
+									{
+										d.multiply(2.5);	
+									}else if(e.getPlayer().getLocation().getBlockY()<50){
+										d.multiply(.5);
+									}else{
+										d.multiply(1);
+									}
+									e.getPlayer().playSound(e.getPlayer().getLocation(), Sound.ENTITY_ENDERDRAGON_FLAP, 1, (float) (9*v.getY()+Math.random()));
+									e.getPlayer().setVelocity(d);
+									e.getPlayer().setFallDistance(0);
+									e.getPlayer().getWorld().playEffect(e.getPlayer().getLocation().getBlock().getRelative(BlockFace.DOWN,1).getLocation(), Effect.STEP_SOUND, e.getPlayer().getLocation().getBlock().getRelative(BlockFace.DOWN,2).getType());
+								}
+							}
 						}
-						e.getPlayer().playSound(e.getPlayer().getLocation(), Sound.ENTITY_ENDERDRAGON_FLAP, 1, (float) (9*v.getY()+Math.random()));
-						e.getPlayer().setVelocity(d);
-						e.getPlayer().setFallDistance(0);
-						e.getPlayer().getWorld().playEffect(e.getPlayer().getLocation().getBlock().getRelative(BlockFace.DOWN,1).getLocation(), Effect.STEP_SOUND, e.getPlayer().getLocation().getBlock().getRelative(BlockFace.DOWN,2).getType());
 					}
 				}
 			}
@@ -99,16 +110,21 @@ implements Listener
 			Player p = e.getPlayer();
 			if(((Flier)BkCP.onlinePlayers.get(e.getPlayer().getName())).getCool()==0)
 			{
-				if(BkCP.advCfg.getConfig().getBoolean("overPowerFlying")==true)
+				for(String s: BkCP.flightMap.keySet())
 				{
-					return;
+					if(BkCP.playerClass.getConfig().getString(p.getUniqueId().toString()+".class").equalsIgnoreCase(s))
+					{
+						if(BkCP.flightMap.get(s)==false)
+						{	
+							if(p.isFlying()&&(!p.getGameMode().equals(GameMode.SURVIVAL)||!p.getGameMode().equals(GameMode.ADVENTURE)))
+							{
+								return;
+							}
+							e.setCancelled(true);
+							p.sendMessage(BkCP.prefix+"type /bcClassInfo for class info!");
+						}
+					}
 				}
-				if(p.isFlying()||!p.getGameMode().equals(GameMode.SURVIVAL)||!p.getGameMode().equals(GameMode.ADVENTURE))
-				{
-					return;
-				}
-				e.setCancelled(true);
-				p.sendMessage(BkCP.prefix+"type /bcClassInfo for class info!");
 			}
 		}
 

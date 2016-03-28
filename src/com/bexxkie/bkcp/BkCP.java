@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -95,6 +96,7 @@ implements Listener
 		,"frostII","frostIII","iceSpike","iceBlast","frostAura","shadowBeamI","shadowBeamII","shadowBeamIII","shadowBlast","shadowBolt","shadowAura"
 		,"lifeDrainI","lifeDrainII","feedI","feedII","throwCake","tntRain","creeperRain","throwFish","potionRain","miningBuff"
 	};
+	public static Map<String,Boolean> flightMap = new HashMap<String, Boolean>();
 	public static String[] myCommands = {"setParticles","runParticles","setSpawn","invitePack","createPack","editPack","getPack","removePack","leavePack"
 		,"joinPack","classInfo","spellBook","setClass","getNicks","togglePVP"
 	};
@@ -172,6 +174,13 @@ implements Listener
 			Upgrade upgrade = new Upgrade();
 			upgrade.getFile();
 		}
+		flightMap.put("Pegasus", advCfg.getConfig().getBoolean("Classes.Pegasus.flight"));
+		flightMap.put("Alicorn", advCfg.getConfig().getBoolean("Classes.Alicorn.flight"));
+		flightMap.put("Dragon", advCfg.getConfig().getBoolean("Classes.Dragon.flight"));
+		flightMap.put("Griffon", advCfg.getConfig().getBoolean("Classes.Griffon.flight"));
+		flightMap.put("Draconequus", advCfg.getConfig().getBoolean("Classes.Draconequus.flight"));
+		flightMap.put("Changeling", advCfg.getConfig().getBoolean("Classes.Changeling.flight"));
+		
 		//TabReg
 		getCommand("bcp").setTabCompleter(new TabAutoCompletion());
 		/*getCommand("bexCP removePack").setTabCompleter(new TabAutoCompletion());
