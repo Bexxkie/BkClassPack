@@ -57,7 +57,6 @@ import com.bexxkie.bkcp.interaction.Research;
 import com.bexxkie.bkcp.interaction.SpellUtil;
 import com.bexxkie.bkcp.interaction.TntRainCancel;
 import com.bexxkie.bkcp.modules.economy.interaction.EconControl;
-import com.bexxkie.bkcp.modules.gender.GenderMain;
 import com.bexxkie.bkcp.modules.pvpControl.PvpControlMain;
 import com.bexxkie.bkcp.modules.sfx.SfxPlay;
 import com.bexxkie.bkcp.util.ClassBooks;
@@ -236,21 +235,6 @@ implements Listener
 		{
 			getServer().getPluginManager().registerEvents(new EconControl(), this);
 		}
-		if(config.getConfig().getBoolean("Module.gender"))
-		{
-			for(Player p: Bukkit.getOnlinePlayers())
-			{
-				if(playerClass.getConfig().getString(p.getUniqueId().toString()+".gender")!=null)
-				{
-					Bukkit.broadcastMessage(genCol.get((playerClass.getConfig().getString(p.getUniqueId().toString()+".gender")))+"1");
-					GenderMain.setGender(p, genCol.get((playerClass.getConfig().getString(p.getUniqueId().toString()+".gender"))));
-					p.getPlayer().setPlayerListName(GenderMain.genderMap.get(p)+p.getDisplayName());
-				}
-			}
-			genCol.put("male", ChatColor.AQUA);
-			genCol.put("female", ChatColor.LIGHT_PURPLE);
-			genCol.put("none", ChatColor.WHITE);
-		}
 		//continue
 		instance = this;
 		for (Player p : Bukkit.getOnlinePlayers()) 
@@ -332,28 +316,6 @@ implements Listener
 							setClass(pl,args[2]);
 						}
 						//}
-					}
-				}
-			}
-			//TODO tabComp done
-			if(args.length>=2&&args[0].equalsIgnoreCase("setGender"))
-			{
-				if(args[1].equalsIgnoreCase("male")||args[1].equalsIgnoreCase("female")||args[1].equalsIgnoreCase("none"))
-				{
-					if(sender.hasPermission("bcp.setGender"))
-					{
-						System.out.print(args[1]);
-						GenderMain.setGender(Bukkit.getPlayer(sender.getName()), genCol.get(args[1].toLowerCase()));
-					}
-					if(args.length==3)
-					{
-						if(sender.hasPermission("bcp.setGenderElse"))
-						{
-							if(Bukkit.getPlayer(args[3])!=null)
-							{
-								GenderMain.setGender(Bukkit.getPlayer(args[2]), genCol.get(args[1].toLowerCase()));
-							}
-						}
 					}
 				}
 			}
@@ -1242,20 +1204,6 @@ implements Listener
 			Boolean bol = playerClass.getConfig().getBoolean(p.getUniqueId()+".PVP");
 			PvpControlMain.pvpList.put(p, bol);
 			System.out.print("BCP_PVPTOGGLE: "+p.getName()+"::"+bol);
-		}
-		if(config.getConfig().getBoolean("Module.gender"))
-		{
-			if(playerClass.getConfig().getString(p.getUniqueId().toString()+".gender")!=null)
-			{
-				if(playerClass.getConfig().getString(p.getUniqueId().toString()+".gender").equalsIgnoreCase("male")||playerClass.getConfig().getString(p.getUniqueId().toString()+".gender").equalsIgnoreCase("female"))
-				{
-					GenderMain.setGender(p, ChatColor.valueOf(playerClass.getConfig().getString(p.getUniqueId().toString()+".gender")));
-				}else
-				{
-
-					GenderMain.setGender(p, ChatColor.WHITE);
-				}
-			}
 		}
 
 	}

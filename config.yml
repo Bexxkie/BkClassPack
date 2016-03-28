@@ -23,8 +23,7 @@ Class-Options:              # Enable or Disable classes from here
   Draconequus-Enabled: true # default true ## CA.ID = 9
 Module: 
   upgrade: false            # upgrade from p3p+
-  togglePVP: true           # Allow PVP toggling
-  gender: true              # Allow 'gender' discrimination 
+  togglePVP: true           # Allow PVP toggling 
   Sfx:                      # player particle effects; set global maximum values.
     Enabled: false          # enable playerParticle effects?           
     maxSpeed: 5.0           # default 5.0 (Double)   (speed)

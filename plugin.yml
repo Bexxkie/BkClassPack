@@ -2,6 +2,7 @@ name: BkClassPack
 version: 5.9
 description: Enhances the vanilla experience by adding unique abilities across a variety of different classes.
 author: Bexxkie [Brian]
+website: https://github.com/BrianKG/BkClassPack.git
 main: com.bexxkie.bkcp.BkCP
 softdepend: [LibsDisguises, ProtocolLib]
 commands:
@@ -37,8 +38,6 @@ commands:
        description: set a players class
   bcp GetNicks:
        description: get the nicknames on your server
-  bcp SetGender:
-       description: set the gender of a player, or yourself.
 permissions:
   bcp.*:
       description: masterNode
@@ -86,10 +85,3 @@ permissions:
   bcp.pvp:
       description: allow toggling of PVP
       default: false
-  bcp.setGender:
-      description: allow (self) gender manipulation
-      default: op
-  bcp.setGenderElse:
-      description: allow (other) gender manipulation
-      default: op
-             
