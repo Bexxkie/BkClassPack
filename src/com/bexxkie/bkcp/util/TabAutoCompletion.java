@@ -214,16 +214,6 @@ public class TabAutoCompletion implements TabCompleter
 					return classes;
 				}
 			}
-			if(args[0].equalsIgnoreCase("SetGender"))
-			{
-				if(args.length==1||args.length==2)
-				{
-					List<String> genders = new ArrayList<String>();
-					genders.add("Male");genders.add("Female");genders.add("None");
-					return(genders);
-				}
-			}
-
 
 		}
 

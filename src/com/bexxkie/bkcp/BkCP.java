@@ -96,7 +96,7 @@ implements Listener
 		,"lifeDrainI","lifeDrainII","feedI","feedII","throwCake","tntRain","creeperRain","throwFish","potionRain","miningBuff"
 	};
 	public static String[] myCommands = {"setParticles","runParticles","setSpawn","invitePack","createPack","editPack","getPack","removePack","leavePack"
-		,"joinPack","classInfo","spellBook","setClass","getNicks","togglePVP", "setGender"
+		,"joinPack","classInfo","spellBook","setClass","getNicks","togglePVP"
 	};
 	public static List<String> commands = Arrays.asList(myCommands);
 	public static List<String> SpellList = Arrays.asList(SpellStrings); 
