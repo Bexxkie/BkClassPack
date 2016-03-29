@@ -84,7 +84,6 @@ implements Listener
 	public static HashMap<String, ClassBase> onlinePlayers = new HashMap<String, ClassBase>();
 	public static HashMap<String, Location> pSpawns = new HashMap<String, Location>();
 	public static HashMap<String, Integer> miningEffect = new HashMap<String, Integer>();
-	public static HashMap<String, ChatColor> genCol = new HashMap<String, ChatColor>();
 	public static String[] colours = {"&a","&b","&c","&d","&e","&f","&1","&2","&3","&4","&5","&6","&7","&9"};
 	public static ArrayList<String> colour = new ArrayList<String>();
 	//contain all classNames

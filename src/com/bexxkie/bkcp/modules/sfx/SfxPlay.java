@@ -66,7 +66,7 @@ implements Listener
 			{speed = 0.5;}
 			if(count<=0||count>maxCount)
 			{count = maxCount;}
-			if(radius>0||radius<=maxRadius)
+			if(radius<=0||radius>=maxRadius)
 			{radius = 0.5;}
 			ParticleEffect toSend = new ParticleEffect(ParticleType.valueOf(pName.toUpperCase()), speed, count, radius);
 			addToMap(p,toSend);

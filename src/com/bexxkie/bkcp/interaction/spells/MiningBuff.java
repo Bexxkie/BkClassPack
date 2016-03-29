@@ -36,7 +36,7 @@ public class MiningBuff
 				{
 					Player pl = (Player)e;
 					double dist = p.getLocation().distance(((Player)e).getLocation());
-					pl.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, (int) (300-dist), 0));
+					pl.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, (int) (7200-dist), 3));
 					e.getLocation().getWorld().playSound(e.getLocation(), Sound.BLOCK_ANVIL_BREAK, (float) amp, (float) amp);
 					buff.sendToLocation(e.getLocation());
 				}
