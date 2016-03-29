@@ -320,7 +320,8 @@ public class ClassAssign implements Listener
 
 					}
 				}
-				ClassBooks.classBooks(e.getPlayer(), classname);
+				e.getPlayer().sendMessage(BkCP.prefix+"run bcp classInfo to get information on your class.");
+				//ClassBooks.classBooks(e.getPlayer(), classname);
 				clearGuild(e.getPlayer());
 				changeSetup(e.getPlayer());
 			}
