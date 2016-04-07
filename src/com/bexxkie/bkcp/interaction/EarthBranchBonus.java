@@ -155,7 +155,8 @@ implements Listener
 			if(BkCP.onlinePlayers.get(e.getPlayer().getName())instanceof Earth){
 				if(((EnergyUser)BkCP.onlinePlayers.get(e.getPlayer().getName())).getBranch().equalsIgnoreCase("miner")&&((EnergyUser)BkCP.onlinePlayers.get(e.getPlayer().getName())).getEnergy()>20)
 				{
-					if(e.getPlayer().isSneaking()&&e.getAction()==Action.LEFT_CLICK_AIR){
+					if(e.getPlayer().isSneaking()&&e.getAction()==Action.LEFT_CLICK_AIR)
+					{
 						if((e.getPlayer().getItemInHand().getType().equals(Material.LOG)||e.getPlayer().getItemInHand().getType().equals(Material.LOG_2))&&e.getPlayer().getItemInHand().getAmount()==64)
 						{
 							((EnergyUser)BkCP.onlinePlayers.get(e.getPlayer().getName())).setEnergy(((EnergyUser)BkCP.onlinePlayers.get(e.getPlayer().getName())).getEnergy()-20);

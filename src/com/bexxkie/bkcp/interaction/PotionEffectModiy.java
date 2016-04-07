@@ -28,7 +28,7 @@ public class PotionEffectModiy implements Listener
 		Player p = e.getPlayer();
 		BlockFace face = getBlockFaceByPlayerName(p.getName()); 
 		Block block = e.getBlock();
-		if(BkCP.miningEffect.containsKey(p.getName())&&BkCP.miningEffect.get(p.getName())>0)
+		if(BkCP.miningEffect.containsKey(p.getName())&&(BkCP.miningEffect.get(p.getName())>0||BkCP.miningEffect.get(p.getName())==-1))
 		{
 			if(p.hasPotionEffect(PotionEffectType.FAST_DIGGING))
 			{
@@ -52,7 +52,8 @@ public class PotionEffectModiy implements Listener
 		Player player = event.getPlayer();
 		BlockFace bf = event.getBlockFace();
 
-		if (player != null && bf != null) {
+		if (player != null && bf != null) 
+		{
 			String name = player.getName();
 			faces.put(name, bf);
 		}

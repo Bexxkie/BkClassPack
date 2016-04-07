@@ -241,7 +241,7 @@ public class Research implements Listener
 							ParticleEffect add2 = new ParticleEffect(ParticleType.PORTAL, RandInt.randDouble(0.1, 0.2), RandInt.randInt(5, 200), RandInt.randDouble(0.5, 1.0));
 							ParticleEffect rem1 = new ParticleEffect(ParticleType.CRIT, RandInt.randDouble(0.1, 0.2), RandInt.randInt(50, 100), RandInt.randDouble(0.5, 1.0));
 							ParticleEffect rem2 = new ParticleEffect(ParticleType.SMOKE_NORMAL, RandInt.randDouble(0.1, 0.2), RandInt.randInt(50, 100), RandInt.randDouble(0.5, 1.0));
-							
+
 							ParticleEffect fail = new ParticleEffect(ParticleType.VILLAGER_ANGRY, RandInt.randDouble(0.1, 0.2), RandInt.randInt(10, 25), RandInt.randDouble(0.1, 1.0));
 							if(p.getItemInHand().getItemMeta().getDisplayName().toUpperCase().startsWith("RE_"))
 							{
@@ -509,33 +509,34 @@ public class Research implements Listener
 						p.getInventory().addItem(rp);
 					}
 				}
-				if(p.getItemInHand().hasItemMeta()&&e.getAction()==(Action.RIGHT_CLICK_AIR))
+			}
+			if(p.getItemInHand().hasItemMeta()&&e.getAction()==(Action.RIGHT_CLICK_AIR))
+			{
+				if(p.getItemInHand().equals(rp))
 				{
-					if(p.getItemInHand().equals(rp))
-					{
-						p.getInventory().removeItem(rp);
-						((EnergyUser)BkCP.onlinePlayers.get(e.getPlayer().getName())).setLevel(((EnergyUser)BkCP.onlinePlayers.get(e.getPlayer().getName())).getLevel()+1);
-						return;
-					}
-					if(p.getItemInHand().equals(b1))
-					{
-						p.getInventory().removeItem(b1);
-						((EnergyUser)BkCP.onlinePlayers.get(e.getPlayer().getName())).setBranch("miner");
-						return;
-					}
-					if(p.getItemInHand().equals(b2))
-					{
-						p.getInventory().removeItem(b2);
-						((EnergyUser)BkCP.onlinePlayers.get(e.getPlayer().getName())).setBranch("farmer");
-						return;
-					}
-					if(p.getItemInHand().equals(b3))
-					{
-						p.getInventory().removeItem(b3);
-						((EnergyUser)BkCP.onlinePlayers.get(e.getPlayer().getName())).setBranch("breeder");
-						return;
-					}
+					p.getInventory().removeItem(rp);
+					((EnergyUser)BkCP.onlinePlayers.get(e.getPlayer().getName())).setLevel(((EnergyUser)BkCP.onlinePlayers.get(e.getPlayer().getName())).getLevel()+1);
+					return;
 				}
+				if(p.getItemInHand().equals(b1))
+				{
+					p.getInventory().removeItem(b1);
+					((EnergyUser)BkCP.onlinePlayers.get(e.getPlayer().getName())).setBranch("miner");
+					return;
+				}
+				if(p.getItemInHand().equals(b2))
+				{
+					p.getInventory().removeItem(b2);
+					((EnergyUser)BkCP.onlinePlayers.get(e.getPlayer().getName())).setBranch("farmer");
+					return;
+				}
+				if(p.getItemInHand().equals(b3))
+				{
+					p.getInventory().removeItem(b3);
+					((EnergyUser)BkCP.onlinePlayers.get(e.getPlayer().getName())).setBranch("breeder");
+					return;
+				}
+
 			}
 		}
 	}

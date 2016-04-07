@@ -166,6 +166,14 @@ EconInterface
 						Earth.this.setEnergy(Earth.this.getEnergy()+((energyCap/3)*0.025));
 						if(Earth.this.getPlayer()!=null&&Earth.this.getBranch().equalsIgnoreCase("miner"))
 						{
+							if(!BkCP.miningEffect.containsKey(Earth.this.getPlayer().getName()))
+							{
+								BkCP.miningEffect.put(Earth.this.getPlayer().getName(), -1);
+							}
+							if(BkCP.miningEffect.containsKey(Earth.this.getPlayer().getName()))
+							{
+								Earth.this.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, Integer.MAX_VALUE, 0));
+							}
 							if(Earth.this.getPlayer()!=null&&Earth.this.getPlayer().getLocation().getY()<50)
 							{
 								Earth.this.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, Integer.MAX_VALUE, 0));
@@ -184,7 +192,7 @@ EconInterface
 
 								}
 							}else{
-								Earth.this.getPlayer().removePotionEffect(PotionEffectType.FAST_DIGGING);
+								//Earth.this.getPlayer().removePotionEffect(PotionEffectType.FAST_DIGGING);
 								Earth.this.getPlayer().removePotionEffect(PotionEffectType.NIGHT_VISION);
 							}
 						}

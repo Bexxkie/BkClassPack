@@ -80,8 +80,9 @@ public class ClassBooks
 			eaPages.add(ChatColor.DARK_PURPLE+ "Affinity tomes "+ChatColor.BLUE+"\n with 30 levels shift click a book* onto a diamond block. \n Book formatting: br_<formattingName>");
 			eaPages.add(ChatColor.DARK_PURPLE+ "Formatting names "+ChatColor.BLUE+"\n miner - farmer - breeder");
 			eaPages.add(ChatColor.DARK_PURPLE+ "Proficiency "+ChatColor.BLUE+"\n Reading an affinity tome grants different abilities.");
-			eaPages.add(ChatColor.DARK_PURPLE+ "Miner[1|2] "+ChatColor.BLUE+"\n Sneak left click with 64 logs in hand, grants 32 coal. sneak left click with 16 coal, grants 16 torches.");
-			eaPages.add(ChatColor.DARK_PURPLE+ "Miner[2|2] "+ChatColor.BLUE+"\n Below Y 50, grant haste and night vision \n below Y 25 haste, night vision, regeneration, saturation, strength.");
+			eaPages.add(ChatColor.DARK_PURPLE+ "Miner[1|3] "+ChatColor.BLUE+"\n Sneak left click with 64 logs in hand, grants 32 coal. sneak left click with 16 coal, grants 16 torches.");
+			eaPages.add(ChatColor.DARK_PURPLE+ "Miner[2|3] "+ChatColor.BLUE+"\n Below Y 50, grant night vision \n below Y 25 grant night vision, regeneration, saturation, strength.");
+			eaPages.add(ChatColor.DARK_PURPLE+ "Miner[3|3] "+ChatColor.BLUE+"\n Break a 3x3x1 plane in front of you, shift to break only the target block.");
 			eaPages.add(ChatColor.DARK_PURPLE+ "Farmer[1|1] "+ChatColor.BLUE+"\n Right click any plant to instantly grow it. \n slightly increased dropRate from crops.");
 			eaPages.add(ChatColor.DARK_PURPLE+ "Breeder[1|1] "+ChatColor.BLUE+"\n Right click any passive, breedable mob to force breeding. \n Right click wolf, ocelot to instantly tame.");
 			eabm.setPages(eaPages);
