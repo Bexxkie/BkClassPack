@@ -1,0 +1,98 @@
+config:
+ - vip,list
+ - spawn-option.cspawn-messages, boolean
+ - class-options.unicorn-enabled, boolean
+ - class-options.pegasus-enabled, boolean
+ - class-options.earth-enabled, boolean
+ - class-options.alicorn-enabled, boolean
+ - class-options.changeling-enabled, boolean
+ - class-options.dragon-enabled, boolean
+ - class-options.timberwolf-enabled, boolean
+ - class-options.griffon-enabled, boolean
+ - class-options.draconequus-enabled, boolean
+ - module.upgrade, boolean
+ - module.togglepvp, boolean
+ - module.sfx.enabled, boolean
+ - module.sfx.maxspeed, double
+ - module.sfx.maxcount, integer
+ - module.sfx.maxradius, double
+ - module.sfx.emitrate, integer
+ - module.economy-enabled, boolean
+advcfg:
+ - classdataautosave, integer
+ - upgrade, boolean
+ - fxptarget, integer
+ - flightcost, double
+ - cflightcost, integer
+ - flighttime, integer
+ - signtext.unicorn, string
+ - signtext.pegasus, string
+ - signtext.earth, string
+ - signtext.alicorn, string
+ - signtext.changeling, string
+ - signtext.dragon, string
+ - signtext.timberwolf, string
+ - signtext.griffon, string
+ - signtext.draconequus, string
+ - classes.unicorn.maxmana, double
+ - classes.unicorn.maxhealth, double
+ - classes.pegasus.maxenergy, double
+ - classes.pegasus.maxhealth, double
+ - classes.pegasus.flight, boolean
+ - classes.earth.maxenergy, double
+ - classes.earth.maxhealth, double
+ - classes.alicorn.maxenergy, double
+ - classes.alicorn.maxmana, double
+ - classes.alicorn.maxhealth, double
+ - classes.alicorn.flight, boolean
+ - classes.dragon.maxenergy, double
+ - classes.dragon.maxhealth, double
+ - classes.dragon.flight, boolean
+ - classes.timberwolf.maxenergy, double
+ - classes.timberwolf.maxhealth, double
+ - classes.timberwolf.invistime, integer
+ - classes.timberwolf.alwaysrun, boolean
+ - classes.griffon.maxenergy, double
+ - classes.griffon.maxhealth, double
+ - classes.griffon.flight, boolean
+ - classes.draconequus.maxenergy, double
+ - classes.draconequus.maxmana, double
+ - classes.draconequus.maxhealth, double
+ - classes.draconequus.flight, boolean
+ - classes.changeling.maxenergy, double
+ - classes.changeling.maxmana, double
+ - classes.changeling.maxhealth, double
+ - classes.changeling.flight, boolean
+ - classes.changeling.disguises.default, list
+ - prefixes.unicorn.default, string
+ - prefixes.unicorn.protector, string
+ - prefixes.unicorn.healer, string
+ - prefixes.unicorn.illusionist, string
+ - prefixes.unicorn.destruction, string
+ - prefixes.unicorn.fire, string
+ - prefixes.unicorn.ice, string
+ - prefixes.unicorn.shadow, string
+ - prefixes.pegasus.default, string
+ - prefixes.earth.default, string
+ - prefixes.earth.miner, string
+ - prefixes.earth.farmer, string
+ - prefixes.earth.breeder, string
+ - prefixes.alicorn.default, string
+ - prefixes.alicorn.corruptor, string
+ - prefixes.alicorn.saviour, string
+ - prefixes.changeling.default, string
+ - prefixes.dragon.default, string
+ - prefixes.timberwolf.default, string
+ - prefixes.griffon.default, string
+ - prefixes.draconequus.default, string
+envdata:
+ - enabled, boolean
+ - biomes, list
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

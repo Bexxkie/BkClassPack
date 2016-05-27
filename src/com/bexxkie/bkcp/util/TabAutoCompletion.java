@@ -18,6 +18,193 @@ public class TabAutoCompletion implements TabCompleter
 		//SPlayer p = Bukkit.getPlayer(name);
 		//World world = p.getWorld();
 		//PluginManager pm = Bukkit.getServer().getPluginManager();
+		if(cmd.getName().equalsIgnoreCase("bcpCC"))
+		{
+			if(args.length>0&&args.length<2)
+			{
+				if(!args[0].isEmpty())
+				{
+					List<String> commands = new ArrayList<String>();
+					for(String com : BkCP.ccCommands)
+					{
+						if(com.toLowerCase().startsWith(args[0].toLowerCase())||com.startsWith(args[0]))
+						{
+							commands.add(com);
+						}
+					}
+					if(!commands.isEmpty()){
+						return commands;}
+					else{return BkCP.ccCommands;}
+				}
+				else{
+					return BkCP.ccCommands;}
+			}
+			if(args[0].equalsIgnoreCase("getData"))
+			{
+				if(args.length==2)
+				{
+					List<String> files = new ArrayList<String>();
+					if(files.isEmpty())
+					{
+						for(String file : BkCP.fileList)
+						{
+							if(file.toLowerCase().startsWith(args[1].toLowerCase())||file.startsWith(args[1]))
+							{
+								files.add(file);
+							}
+						}
+						if(!files.isEmpty()){
+							return files;}
+						else{return BkCP.fileList;}
+					}
+				}
+				if(args.length==3){
+					List<String> vars = new ArrayList<String>();
+					if(args[1].equalsIgnoreCase("config"))
+					{
+						if(vars.isEmpty())
+						{
+							for(String var :BkCP.validVarsCon)
+							{
+
+								if(var.toLowerCase().startsWith(args[2].toLowerCase())||var.startsWith(args[2]))
+								{
+									vars.add(var);
+								}
+							}
+							if(!vars.isEmpty()){
+								return vars;}
+							else{return BkCP.validVarsCon;}
+						}
+						return vars;
+					}
+					if(args[1].equalsIgnoreCase("advConfig"))
+					{
+						if(vars.isEmpty())
+						{
+							for(String var :BkCP.validVarsAdCon)
+							{
+
+								if(var.toLowerCase().startsWith(args[2].toLowerCase())||var.startsWith(args[2]))
+								{
+									vars.add(var);
+								}
+							}
+							if(!vars.isEmpty()){
+								return vars;}
+							else{return BkCP.validVarsAdCon;}
+						}
+						return vars;
+					}
+					if(args[1].equalsIgnoreCase("envData"))
+					{
+						if(vars.isEmpty())
+						{
+							for(String var :BkCP.validVarsEnvDat)
+							{
+
+								if(var.toLowerCase().startsWith(args[2].toLowerCase())||var.startsWith(args[2]))
+								{
+									vars.add(var);
+								}
+							}
+							if(!vars.isEmpty()){
+								return vars;}
+							else{return BkCP.validVarsEnvDat;}
+						}
+						return vars;
+					}
+				}
+			}
+			if(args[0].equalsIgnoreCase("setData"))
+			{
+				if(args.length==2)
+				{
+					List<String> files = new ArrayList<String>();
+					if(files.isEmpty())
+					{
+						for(String file : BkCP.fileList)
+						{
+							if(file.toLowerCase().startsWith(args[1].toLowerCase())||file.startsWith(args[1]))
+							{
+								files.add(file);
+							}
+						}
+						if(!files.isEmpty()){
+							return files;}
+						else{return BkCP.fileList;}
+					}
+				}
+				if(args.length==3){
+					List<String> vars = new ArrayList<String>();
+					if(args[1].equalsIgnoreCase("config"))
+					{
+						if(vars.isEmpty())
+						{
+							for(String var :BkCP.validVarsCon)
+							{
+								
+								if(var.toLowerCase().startsWith(args[2].toLowerCase())||var.startsWith(args[2]))
+								{
+									vars.add(var);
+								}
+							}
+							if(!vars.isEmpty()){
+								return vars;}
+							else{return BkCP.validVarsCon;}
+						}
+						return vars;
+					}
+					if(args[1].equalsIgnoreCase("advConfig"))
+					{
+						if(vars.isEmpty())
+						{
+							for(String var :BkCP.validVarsAdCon)
+							{
+
+								if(var.toLowerCase().startsWith(args[2].toLowerCase())||var.startsWith(args[2]))
+								{
+									vars.add(var);
+								}
+							}
+							if(!vars.isEmpty()){
+								return vars;}
+							else{return BkCP.validVarsAdCon;}
+						}
+						return vars;
+					}
+					if(args[1].equalsIgnoreCase("envData"))
+					{
+						if(vars.isEmpty())
+						{
+							for(String var :BkCP.validVarsEnvDat)
+							{
+
+								if(var.toLowerCase().startsWith(args[2].toLowerCase())||var.startsWith(args[2]))
+								{
+									vars.add(var);
+								}
+							}
+							if(!vars.isEmpty()){
+								return vars;}
+							else{return BkCP.validVarsEnvDat;}
+						}
+						return vars;
+					}
+				}
+				if(args.length==4)
+				{
+					String file = args[1].toLowerCase();
+					String path = args[2].toLowerCase();
+					List<String> varTypeS = new ArrayList<String>();
+					if(BkCP.varType.containsKey(file.toLowerCase()+"."+path.toLowerCase()))
+					{
+						varTypeS.add(BkCP.varType.get(file.toLowerCase()+"."+path.toLowerCase()));
+						return varTypeS;
+					}
+				}
+			}
+		}
 		if(cmd.getName().equalsIgnoreCase("bcp"))
 		{
 			if(args.length>0&&args.length<2)

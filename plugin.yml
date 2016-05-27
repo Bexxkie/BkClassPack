@@ -1,5 +1,5 @@
 name: BkClassPack
-version: 6.0
+version: 6.5
 description: Enhances the vanilla experience by adding unique abilities across a variety of different classes.
 author: Bexxkie [Brian]
 website: https://github.com/BrianKG/BkClassPack.git
@@ -38,6 +38,12 @@ commands:
        description: set a players class
   bcp GetNicks:
        description: get the nicknames on your server
+  bcpCC:
+       description: CC command base
+  bcpCC getData:
+       description: get data from a file
+  bcpCC setData:
+       description: set data to a file
 permissions:
   bcp.*:
       description: masterNode
@@ -47,12 +53,15 @@ permissions:
       default: op
   bcp.dev:
       description: allow use of devCommands
+      children:
+          bcp.*: true
       default: op
   bcp.admin:
       description: adminNode
       children:
           bcp.mod: true
           OPpack: true
+          bcp.cc: true
       default: op
   bcp.mod:
       description: moderatorNode
@@ -85,3 +94,6 @@ permissions:
   bcp.pvp:
       description: allow toggling of PVP
       default: false
+  bcp.cc:
+      description: allow config editing
+      default: op

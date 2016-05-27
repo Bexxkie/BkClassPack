@@ -57,6 +57,7 @@ import com.bexxkie.bkcp.interaction.ProjectileSpellDamage;
 import com.bexxkie.bkcp.interaction.Research;
 import com.bexxkie.bkcp.interaction.SpellUtil;
 import com.bexxkie.bkcp.interaction.TntRainCancel;
+import com.bexxkie.bkcp.modules.control.ClassControl;
 import com.bexxkie.bkcp.modules.economy.interaction.EconControl;
 import com.bexxkie.bkcp.modules.pvpControl.PvpControlMain;
 import com.bexxkie.bkcp.modules.sfx.SfxPlay;
@@ -81,6 +82,7 @@ implements Listener
 	public static ConfigMk spawns;
 	public static ConfigMk guilds_packs;
 	public static ConfigMk EnvData;
+	public static ConfigMk VariableMap;
 	public static HashMap<String, ClassBase> onlinePlayers = new HashMap<String, ClassBase>();
 	public static HashMap<String, Location> pSpawns = new HashMap<String, Location>();
 	public static HashMap<String, Integer> miningEffect = new HashMap<String, Integer>();
@@ -88,7 +90,7 @@ implements Listener
 	public static ArrayList<String> colour = new ArrayList<String>();
 	//contain all classNames
 	public static String[] classNames = { "Unicorn", "Pegasus", "Earth", "Alicorn", "Changeling", "Dragon", "Griffon", "Draconequus", "TimberWolf"};
-	public static String prefix = ChatColor.LIGHT_PURPLE+"[BCP]"+ChatColor.RESET;
+	public static String prefix = ChatColor.LIGHT_PURPLE+"[BCP]"+ChatColor.RESET+" ";
 	public static boolean econEnabled;
 	public static String[] SpellStrings = {"blink","recall","recallII","flameI","flameII","flameIII","fireBlast","fireBall","fireAura"
 		,"healI","healII","healIII","healIV","healTargetI","healTargetII","healAura","courage","curePoisonI","curePoisonII","cureAll","frostI"
@@ -99,6 +101,14 @@ implements Listener
 	public static String[] myCommands = {"setParticles","runParticles","setSpawn","invitePack","createPack","editPack","getPack","removePack","leavePack"
 		,"joinPack","classInfo","spellBook","setClass","getNicks","togglePVP"
 	};
+	public static Map<String, String> varType = new HashMap<String, String>();
+	public static String[] fileArr = {"config","advConfig","envData"};
+	public static List<String> validVarsCon = new ArrayList<String>();
+	public static List<String> validVarsAdCon = new ArrayList<String>();
+	public static List<String> validVarsEnvDat = new ArrayList<String>();
+	public static List<String> fileList = Arrays.asList(fileArr);
+	public static String[] controlCommands = {"getData","setData"};
+	public static List<String> ccCommands = Arrays.asList(controlCommands);
 	public static List<String> commands = Arrays.asList(myCommands);
 	public static List<String> SpellList = Arrays.asList(SpellStrings); 
 	private PluginLogger logger = null;
@@ -109,6 +119,8 @@ implements Listener
 	Plugin disguiseLib = Bukkit.getServer().getPluginManager().getPlugin("LibsDisguises");
 	SfxPlay sfx = new SfxPlay();
 	public static boolean DisguiseLibsEnabled=false;
+	public static ClassControl cControl = new ClassControl();
+	@SuppressWarnings("unchecked")
 	public void onEnable()
 	{
 		if(protoLib==null||disguiseLib ==null)
@@ -159,6 +171,9 @@ implements Listener
 		EnvData = new ConfigMk(this, "EnvData.yml",null);
 		saveDefaultConfig("EnvData.yml",null);
 		EnvData.reloadConfig();
+		VariableMap = new ConfigMk(this, "varMap.yml",null);
+		saveDefaultConfig("varMap.yml",null);
+		VariableMap.reloadConfig();
 		reloadSpawns();
 		econEnabled = config.getConfig().getBoolean("Module.Economy-Enabled");
 		int millis = advCfg.getConfig().getInt("classDataAutoSave");
@@ -179,9 +194,10 @@ implements Listener
 		flightMap.put("Griffon", advCfg.getConfig().getBoolean("Classes.Griffon.flight"));
 		flightMap.put("Draconequus", advCfg.getConfig().getBoolean("Classes.Draconequus.flight"));
 		flightMap.put("Changeling", advCfg.getConfig().getBoolean("Classes.Changeling.flight"));
-		
+
 		//TabReg
 		getCommand("bcp").setTabCompleter(new TabAutoCompletion());
+		getCommand("bcpCC").setTabCompleter(new TabAutoCompletion());
 		/*getCommand("bexCP removePack").setTabCompleter(new TabAutoCompletion());
 			getCommand("bexCP createPack").setTabCompleter(new TabAutoCompletion());
 			getCommand("bexCP editPack").setTabCompleter(new TabAutoCompletion());
@@ -224,6 +240,25 @@ implements Listener
 				colour.add(st);
 			}
 		}
+		validVarsCon.addAll(BkCP.config.getConfig().getKeys(true));
+		validVarsAdCon.addAll(BkCP.advCfg.getConfig().getKeys(true));
+		validVarsEnvDat.addAll(BkCP.EnvData.getConfig().getKeys(true));
+		List<String> varTemp1 = (List<String>) VariableMap.getConfig().getList("config");
+		for(String s :varTemp1)
+		{
+			varType.put("config."+s.substring(0, s.indexOf(",")).replace(",", ""),s.substring(s.indexOf(",")).replace(" ", "").replace(",", ""));
+		}
+		List<String> varTemp2 =  (List<String>) VariableMap.getConfig().getList("advcfg");
+		for(String s :varTemp2)
+		{
+			varType.put("advconfig."+s.substring(0, s.indexOf(",")).replace(",", ""),s.substring(s.indexOf(",")).replace(" ", "").replace(",", ""));
+		}
+		List<String> varTemp3 = (List<String>) VariableMap.getConfig().getList("envdata");
+		for(String s :varTemp3)
+		{
+			varType.put("envdata."+s.substring(0, s.indexOf(",")).replace(",", ""),s.substring(s.indexOf(",")).replace(" ", "").replace(",", ""));
+		}
+
 		//module registry
 		//TODO
 		if(config.getConfig().getBoolean("Module.togglePVP"))
@@ -274,6 +309,8 @@ implements Listener
 			}
 			sfx.startEffect();
 		}
+
+
 	}
 
 
@@ -306,6 +343,30 @@ implements Listener
 		//TODO set commands as <prefix+cmd>
 		String name = sender.getName();
 		Player p = Bukkit.getPlayer(name);
+		if(cmd.getName().equalsIgnoreCase("bcpcc"))
+		{
+			if(sender.hasPermission("bcp.cc")){
+				if(args.length==3&&args[0].equalsIgnoreCase("getData"))
+				{
+					String output = cControl.getData(args[1],args[2]);
+					sender.sendMessage(BkCP.prefix+args[2]+" "+ChatColor.LIGHT_PURPLE+"["+ChatColor.RESET+ChatColor.BOLD+output+ChatColor.RESET+ChatColor.LIGHT_PURPLE+"]");
+					//SetCmd
+				}
+				if(args.length==4&&args[0].equalsIgnoreCase("setData"))
+				{
+					if(cControl.setData(args[1],args[2],args[3]))
+					{
+						sender.sendMessage(BkCP.prefix+args[2]+": "+ChatColor.GREEN+args[3]);
+					}else{
+						sender.sendMessage(BkCP.prefix+ChatColor.ITALIC+" "+args[2]+": "+args[3]+ChatColor.RESET+ChatColor.RED+" INVALID, no changes made.");}
+
+				}
+			}
+			else
+			{
+				sender.sendMessage(BkCP.prefix + "Missing permissions");
+			}
+		}
 		if(cmd.getName().equalsIgnoreCase("bcp"))
 		{
 			//if(cmd.getName().equalsIgnoreCase("bcSetClass"))
@@ -763,6 +824,7 @@ implements Listener
 					}
 				}
 			}
+
 		}
 
 		return false;
@@ -776,6 +838,7 @@ implements Listener
 	}
 	public void setClass(Player p, String c)
 	{
+		advCfg.reloadConfig();
 		String classname = "";
 		switch(c)
 		{
