@@ -67,8 +67,12 @@ public class ParticleEffect {
 		if (!vString.isEmpty()){
 			String[] array = vString.split("_");
 			v = Double.parseDouble(array[0] + "." + array[1]);
+			if(v==1.1){
+				v=10.1;
+			}
 		}
 		try {
+			//System.out.print(v);
 			Bukkit.getLogger().info("[ParticleLib] Server major/minor version: " + v);
 			if (v < 1.7) {
 				Bukkit.getLogger().info("[ParticleLib] Hooking into pre-Netty NMS classes");
@@ -172,6 +176,7 @@ public class ParticleEffect {
 			}
 			Object packet;
 			if (netty){
+				//System.out.print("netty");
 				if (newParticlePacketConstructor){
 					Object particleType = enumParticle.getEnumConstants()[type.getId()];
 					packet = packetConstructor.newInstance(particleType,
@@ -180,6 +185,7 @@ public class ParticleEffect {
 							(float)this.speed, this.count, new int[0]);
 				}
 				else {
+					//System.out.print("else1");
 					packet = packetConstructor.newInstance(type.getName(),
 							(float)location.getX(), (float)location.getY(), (float)location.getZ(),
 							(float)this.radius, (float)this.radius, (float)this.radius,
@@ -187,6 +193,7 @@ public class ParticleEffect {
 				}
 			}
 			else {
+				//System.out.print("else2");
 				packet = packetConstructor.newInstance();
 				for (Field f : fields){
 					f.setAccessible(true);

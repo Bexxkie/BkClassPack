@@ -2,7 +2,7 @@ package com.bexxkie.bkcp.interaction;
 
 import java.util.Random;
 
-import net.minecraft.server.v1_9_R1.NBTTagCompound;
+import net.minecraft.server.v1_10_R1.NBTTagCompound;
 
 import org.bukkit.CropState;
 import org.bukkit.EntityEffect;
@@ -14,7 +14,7 @@ import org.bukkit.TreeType;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.craftbukkit.v1_9_R1.entity.CraftAnimals;
+import org.bukkit.craftbukkit.v1_10_R1.entity.CraftAnimals;
 import org.bukkit.entity.Cow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.MushroomCow;

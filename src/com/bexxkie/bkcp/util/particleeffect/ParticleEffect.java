@@ -160,7 +160,7 @@ public enum ParticleEffect
    
    public void display(Vector direction, float speed, int count, Location center, double range)
      throws ParticleEffect.ParticleVersionException, ParticleEffect.ParticleDataException, IllegalArgumentException
-   {
+     {
      if (!isSupported()) {
        throw new ParticleVersionException("This particle effect is not supported by your server version");
      }
@@ -577,11 +577,12 @@ public enum ParticleEffect
        }
        try
        {
-         version = Integer.parseInt(Character.toString(ReflectionUtils.PackageType.getServerVersion().charAt(3)));
+         //version = Integer.parseInt(Character.toString(ReflectionUtils.PackageType.getServerVersion().charAt(3)));
+    	   version = 10; 
          if (version > 7) {
            enumParticle = ReflectionUtils.PackageType.MINECRAFT_SERVER.getClass("EnumParticle");
          }
-         Class<?> packetClass = ReflectionUtils.PackageType.MINECRAFT_SERVER.getClass(version < 7 ? "Packet63WorldParticles" : "PacketPlayOutWorldParticles");
+         Class<?> packetClass = ReflectionUtils.PackageType.MINECRAFT_SERVER.getClass(version < 7? "Packet63WorldParticles" : "PacketPlayOutWorldParticles");
          packetConstructor = ReflectionUtils.getConstructor(packetClass, new Class[0]);
          getHandle = ReflectionUtils.getMethod("CraftPlayer", ReflectionUtils.PackageType.CRAFTBUKKIT_ENTITY, "getHandle", new Class[0]);
          playerConnection = ReflectionUtils.getField("EntityPlayer", ReflectionUtils.PackageType.MINECRAFT_SERVER, false, "playerConnection");

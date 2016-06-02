@@ -68,6 +68,7 @@ import com.bexxkie.bkcp.util.ParticleEffect;
 import com.bexxkie.bkcp.util.TabAutoCompletion;
 import com.bexxkie.bkcp.util.Upgrade;
 import com.bexxkie.bkcp.util.ParticleEffect.ParticleType;
+import com.comphenix.protocol.PacketType.Sender;
 
 
 public class BkCP 
@@ -148,7 +149,9 @@ implements Listener
 			//disable Changeling if not installed
 			//Bukkit.getPluginManager().disablePlugin(this);
 			//return;
-		}//else{
+		}else{
+			DisguiseLibsEnabled=true;
+		}
 		this.getLogger().info("Requirements installed, continuing...");
 		config = new ConfigMk(this, "config.yml", null);
 		saveDefaultConfig("config.yml",null);
@@ -1066,9 +1069,10 @@ implements Listener
 	public void clearGuild(Player p)
 	{
 		//Clear from timberWolf packs
+		try{
 		for(String gid : BkCP.guilds_packs.getConfig().getConfigurationSection("Twol").getKeys(false))
 		{
-			if(!gid.equalsIgnoreCase("null"))
+			if(!gid.equalsIgnoreCase("null")&&gid!=null)
 			{
 				String leader = BkCP.guilds_packs.getConfig().getString("Twol."+gid+".leader");
 				if(leader.equals(p.getUniqueId().toString()))
@@ -1102,6 +1106,10 @@ implements Listener
 					BkCP.guilds_packs.reloadConfig();
 				}
 			}
+		}
+		}catch(NullPointerException e)
+		{
+			System.out.print("bcp>clearGuild:"+e.getCause());
 		}
 	}
 	public void changeSetup(Player p)
