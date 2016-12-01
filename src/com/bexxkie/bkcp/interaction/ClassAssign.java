@@ -1,5 +1,6 @@
 package com.bexxkie.bkcp.interaction;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.bukkit.Bukkit;
@@ -47,283 +48,285 @@ public class ClassAssign implements Listener
 		{
 			String sign = ((Sign)e.getClickedBlock().getState()).getLine(0);
 			Player p = e.getPlayer();
-
-			if(BkCP.config.getConfig().getStringList("vip").contains(sign.replace("[", "").replace("]", ""))
-					&&!p.hasPermission("bcp.vip"))
+			if(Arrays.asList(BkCP.classNames).contains(sign.replace("[", "").replace("]", "")))
 			{
-				e.getPlayer().sendMessage(BkCP.prefix+" You must be VIP to use this class.");
-				return;
-
-			}else if((!BkCP.config.getConfig().getStringList("vip").contains(sign.replace("[", "").replace("]", "")))
-					||p.hasPermission("bcp.vip"))
-			{
-				if (sign.equals(BkCP.advCfg.getConfig().getString("SignText.Unicorn"))) 
+				if(BkCP.config.getConfig().getStringList("vip").contains(sign.replace("[", "").replace("]", ""))
+						&&!p.hasPermission("bcp.vip"))
 				{
-					if (BkCP.config.getConfig().getBoolean("Class-Options.Unicorn-Enabled"))
-					{
-						String[] spells = {"flameI","frostI","blink","healI","shadowBeamI"};
-						//CLASSID 1
-						classname = "Unicorn";
-						p.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString(), null);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".class", classname);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".mana", BkCP.advCfg.getConfig().getDouble("Classes.Unicorn.maxMana"));
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".maxMana", BkCP.advCfg.getConfig().getDouble("Classes.Unicorn.maxMana"));
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".level", 0);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".branch", "default");
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".currentSpell", 0);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".spells", spells);
+					e.getPlayer().sendMessage(BkCP.prefix+" You must be VIP to use this class.");
+					return;
 
-						BkCP.playerClass.saveConfig();
-						BkCP.playerClass.reloadConfig();
-						BkCP.onlinePlayers.remove(e.getPlayer().getName());
-						addExtensions(e.getPlayer());
-						Unicorn newClass = new Unicorn(e.getPlayer().getName());
-						newClass.setPrefix(BkCP.advCfg.getConfig().getString("Prefixes.Unicorn.default").replaceAll("&", "§"));
-						//newClass.refreshMana(1);
-						BkCP.onlinePlayers.put(e.getPlayer().getName(), newClass);	
-						e.getPlayer().sendMessage(BkCP.prefix+ChatColor.AQUA + "You are now a Unicorn!");
-						BkCP.spawnPlayer(e.getPlayer(), "Unicorn");
-
-					}
-				}
-				if (sign.equals(BkCP.advCfg.getConfig().getString("SignText.Pegasus"))) 
+				}else if((!BkCP.config.getConfig().getStringList("vip").contains(sign.replace("[", "").replace("]", "")))
+						||p.hasPermission("bcp.vip"))
 				{
-					if (BkCP.config.getConfig().getBoolean("Class-Options.Pegasus-Enabled"))
+					if (sign.equals(BkCP.advCfg.getConfig().getString("SignText.Unicorn"))) 
 					{
-						//CLASSID 2
-						classname = "Pegasus";
-						p.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString(), null);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".class", classname);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".energy", BkCP.advCfg.getConfig().getDouble("Classes.Pegasus.maxEnergy"));
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".maxEnergy", BkCP.advCfg.getConfig().getDouble("Classes.Pegasus.maxEnergy"));
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".level", 0);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".fxp", 0);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".ftime", 0);
-						BkCP.playerClass.saveConfig();
-						BkCP.playerClass.reloadConfig();
-						BkCP.onlinePlayers.remove(e.getPlayer().getName());
-						addExtensions(e.getPlayer());
-						Pegasus newClass = new Pegasus(e.getPlayer().getName());
-						newClass.setPrefix(BkCP.advCfg.getConfig().getString("Prefixes.Pegasus.default").replaceAll("&", "§"));
-						//newClass.refreshEnergy(2);
+						if (BkCP.config.getConfig().getBoolean("Class-Options.Unicorn-Enabled"))
+						{
+							String[] spells = {"flameI","frostI","blink","healI","shadowBeamI"};
+							//CLASSID 1
+							classname = "Unicorn";
+							p.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString(), null);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".class", classname);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".mana", BkCP.advCfg.getConfig().getDouble("Classes.Unicorn.maxMana"));
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".maxMana", BkCP.advCfg.getConfig().getDouble("Classes.Unicorn.maxMana"));
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".level", 0);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".branch", "default");
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".currentSpell", 0);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".spells", spells);
 
-						BkCP.onlinePlayers.put(e.getPlayer().getName(), newClass);	
-						e.getPlayer().sendMessage(BkCP.prefix+ChatColor.AQUA + "You are now a Pegasus!");
-						BkCP.spawnPlayer(e.getPlayer(), "Pegasus");
+							BkCP.playerClass.saveConfig();
+							BkCP.playerClass.reloadConfig();
+							BkCP.onlinePlayers.remove(e.getPlayer().getName());
+							addExtensions(e.getPlayer());
+							Unicorn newClass = new Unicorn(e.getPlayer().getName());
+							newClass.setPrefix(BkCP.advCfg.getConfig().getString("Prefixes.Unicorn.default").replaceAll("&", "§"));
+							//newClass.refreshMana(1);
+							BkCP.onlinePlayers.put(e.getPlayer().getName(), newClass);	
+							e.getPlayer().sendMessage(BkCP.prefix+ChatColor.AQUA + "You are now a Unicorn!");
+							BkCP.spawnPlayer(e.getPlayer(), "Unicorn");
 
+						}
 					}
-				}
-				if (sign.equals(BkCP.advCfg.getConfig().getString("SignText.Earth"))) 
-				{
-					if (BkCP.config.getConfig().getBoolean("Class-Options.Earth-Enabled"))
+					if (sign.equals(BkCP.advCfg.getConfig().getString("SignText.Pegasus"))) 
 					{
-						//CLASSID 3
-						classname = "Earth";
-						p.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString(), null);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".class", classname);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".energy", BkCP.advCfg.getConfig().getDouble("Classes.Earth.maxEnergy"));
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".maxEnergy", BkCP.advCfg.getConfig().getDouble("Classes.Earth.maxEnergy"));
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".level", 0);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".branch", "default");
+						if (BkCP.config.getConfig().getBoolean("Class-Options.Pegasus-Enabled"))
+						{
+							//CLASSID 2
+							classname = "Pegasus";
+							p.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString(), null);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".class", classname);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".energy", BkCP.advCfg.getConfig().getDouble("Classes.Pegasus.maxEnergy"));
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".maxEnergy", BkCP.advCfg.getConfig().getDouble("Classes.Pegasus.maxEnergy"));
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".level", 0);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".fxp", 0);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".ftime", 0);
+							BkCP.playerClass.saveConfig();
+							BkCP.playerClass.reloadConfig();
+							BkCP.onlinePlayers.remove(e.getPlayer().getName());
+							addExtensions(e.getPlayer());
+							Pegasus newClass = new Pegasus(e.getPlayer().getName());
+							newClass.setPrefix(BkCP.advCfg.getConfig().getString("Prefixes.Pegasus.default").replaceAll("&", "§"));
+							//newClass.refreshEnergy(2);
 
-						BkCP.playerClass.saveConfig();
-						BkCP.playerClass.reloadConfig();
-						BkCP.onlinePlayers.remove(e.getPlayer().getName());
-						addExtensions(e.getPlayer());
-						Earth newClass = new Earth(e.getPlayer().getName());
-						newClass.setPrefix(BkCP.advCfg.getConfig().getString("Prefixes.Earth.default").replaceAll("&", "§"));
-						//newClass.refreshEnergy(2);
+							BkCP.onlinePlayers.put(e.getPlayer().getName(), newClass);	
+							e.getPlayer().sendMessage(BkCP.prefix+ChatColor.AQUA + "You are now a Pegasus!");
+							BkCP.spawnPlayer(e.getPlayer(), "Pegasus");
 
-						BkCP.onlinePlayers.put(e.getPlayer().getName(), newClass);	
-						e.getPlayer().sendMessage(BkCP.prefix+ChatColor.AQUA + "You are now an Earth pony!");
-						BkCP.spawnPlayer(e.getPlayer(), "Earth");
-
+						}
 					}
-				}
-				if (sign.equals(BkCP.advCfg.getConfig().getString("SignText.Alicorn"))) 
-				{
-					if (BkCP.config.getConfig().getBoolean("Class-Options.Alicorn-Enabled"))
+					if (sign.equals(BkCP.advCfg.getConfig().getString("SignText.Earth"))) 
 					{
-						//CLASSID 4
-						classname = "Alicorn";
-						p.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString(), null);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".class", classname);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".energy", BkCP.advCfg.getConfig().getDouble("Classes.Alicorn.maxEnergy"));
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".mana", BkCP.advCfg.getConfig().getDouble("Classes.Alicorn.maxMana"));
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".maxEnergy", BkCP.advCfg.getConfig().getDouble("Classes.Alicorn.maxEnergy"));
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".maxMana", BkCP.advCfg.getConfig().getDouble("Classes.Alicorn.maxMana"));
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".flevel", 0);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".mlevel", 0);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".fxp", 0);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".ftime", 0);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".branch", "default");
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".currentSpell", 0);
-						BkCP.playerClass.saveConfig();
-						BkCP.playerClass.reloadConfig();
-						BkCP.onlinePlayers.remove(e.getPlayer().getName());
-						addExtensions(e.getPlayer());
-						Alicorn newClass = new Alicorn(e.getPlayer().getName());
-						newClass.setPrefix(BkCP.advCfg.getConfig().getString("Prefixes.Alicorn.default").replaceAll("&", "§"));
-						//newClass.refreshEnergy(2);
+						if (BkCP.config.getConfig().getBoolean("Class-Options.Earth-Enabled"))
+						{
+							//CLASSID 3
+							classname = "Earth";
+							p.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString(), null);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".class", classname);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".energy", BkCP.advCfg.getConfig().getDouble("Classes.Earth.maxEnergy"));
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".maxEnergy", BkCP.advCfg.getConfig().getDouble("Classes.Earth.maxEnergy"));
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".level", 0);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".branch", "default");
 
-						BkCP.onlinePlayers.put(e.getPlayer().getName(), newClass);	
-						e.getPlayer().sendMessage(BkCP.prefix+ChatColor.AQUA + "You are now an Alicorn!");
-						BkCP.spawnPlayer(e.getPlayer(), "Alicorn");
+							BkCP.playerClass.saveConfig();
+							BkCP.playerClass.reloadConfig();
+							BkCP.onlinePlayers.remove(e.getPlayer().getName());
+							addExtensions(e.getPlayer());
+							Earth newClass = new Earth(e.getPlayer().getName());
+							newClass.setPrefix(BkCP.advCfg.getConfig().getString("Prefixes.Earth.default").replaceAll("&", "§"));
+							//newClass.refreshEnergy(2);
 
+							BkCP.onlinePlayers.put(e.getPlayer().getName(), newClass);	
+							e.getPlayer().sendMessage(BkCP.prefix+ChatColor.AQUA + "You are now an Earth pony!");
+							BkCP.spawnPlayer(e.getPlayer(), "Earth");
+
+						}
 					}
-				}
-				if (sign.equals(BkCP.advCfg.getConfig().getString("SignText.Changeling"))) 
-				{
-					if (BkCP.DisguiseLibsEnabled==true&&BkCP.config.getConfig().getBoolean("Class-Options.Changeling-Enabled"))
+					if (sign.equals(BkCP.advCfg.getConfig().getString("SignText.Alicorn"))) 
 					{
-						//CLASSID 5
-						classname = "Changeling";
-						p.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString(), null);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".class", classname);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".energy", BkCP.advCfg.getConfig().getDouble("Classes.Changeling.maxEnergy"));
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".mana", BkCP.advCfg.getConfig().getDouble("Classes.Changeling.maxMana"));
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".maxEnergy", BkCP.advCfg.getConfig().getDouble("Classes.Changeling.maxEnergy"));
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".maxMana", BkCP.advCfg.getConfig().getDouble("Classes.Changeling.maxMana"));
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".flevel", 0);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".mlevel", 0);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".fxp", 0);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".ftime", 0);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".branch", "default");
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".disguises",BkCP.advCfg.getConfig().getDouble("Classes.Changeling.disguises.default"));
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".currentSpell", 0);
-						BkCP.playerClass.saveConfig();
-						BkCP.playerClass.reloadConfig();
-						BkCP.onlinePlayers.remove(e.getPlayer().getName());
-						addExtensions(e.getPlayer());
-						Changeling newClass = new Changeling(e.getPlayer().getName());
-						newClass.setPrefix(BkCP.advCfg.getConfig().getString("Prefixes.Changeling.default").replaceAll("&", "§"));
-						BkCP.onlinePlayers.put(e.getPlayer().getName(), newClass);	
-						e.getPlayer().sendMessage(BkCP.prefix+ChatColor.AQUA + "You are now a Changeling!");
-						BkCP.spawnPlayer(e.getPlayer(), "Changeling");
+						if (BkCP.config.getConfig().getBoolean("Class-Options.Alicorn-Enabled"))
+						{
+							//CLASSID 4
+							classname = "Alicorn";
+							p.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString(), null);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".class", classname);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".energy", BkCP.advCfg.getConfig().getDouble("Classes.Alicorn.maxEnergy"));
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".mana", BkCP.advCfg.getConfig().getDouble("Classes.Alicorn.maxMana"));
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".maxEnergy", BkCP.advCfg.getConfig().getDouble("Classes.Alicorn.maxEnergy"));
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".maxMana", BkCP.advCfg.getConfig().getDouble("Classes.Alicorn.maxMana"));
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".flevel", 0);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".mlevel", 0);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".fxp", 0);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".ftime", 0);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".branch", "default");
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".currentSpell", 0);
+							BkCP.playerClass.saveConfig();
+							BkCP.playerClass.reloadConfig();
+							BkCP.onlinePlayers.remove(e.getPlayer().getName());
+							addExtensions(e.getPlayer());
+							Alicorn newClass = new Alicorn(e.getPlayer().getName());
+							newClass.setPrefix(BkCP.advCfg.getConfig().getString("Prefixes.Alicorn.default").replaceAll("&", "§"));
+							//newClass.refreshEnergy(2);
 
+							BkCP.onlinePlayers.put(e.getPlayer().getName(), newClass);	
+							e.getPlayer().sendMessage(BkCP.prefix+ChatColor.AQUA + "You are now an Alicorn!");
+							BkCP.spawnPlayer(e.getPlayer(), "Alicorn");
+
+						}
 					}
-				}
-				if (sign.equals(BkCP.advCfg.getConfig().getString("SignText.Dragon"))) 
-				{
-					if (BkCP.config.getConfig().getBoolean("Class-Options.Dragon-Enabled"))
+					if (sign.equals(BkCP.advCfg.getConfig().getString("SignText.Changeling"))) 
 					{
-						//classID 6
-						classname = "Dragon";
-						p.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);	
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString(), null);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".class", classname);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".energy", BkCP.advCfg.getConfig().getDouble("Classes.Dragon.maxEnergy"));
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".maxEnergy", BkCP.advCfg.getConfig().getDouble("Classes.Dragon.maxEnergy"));
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".fxp", 0);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".ftime", 0);
-						BkCP.playerClass.saveConfig();
-						BkCP.playerClass.reloadConfig();
-						BkCP.onlinePlayers.remove(e.getPlayer().getName());
-						addExtensions(e.getPlayer());
-						Dragon newClass = new Dragon(e.getPlayer().getName());
-						newClass.setPrefix(BkCP.advCfg.getConfig().getString("Prefixes.Dragon.default").replaceAll("&", "§"));
-						BkCP.onlinePlayers.put(e.getPlayer().getName(), newClass);	
-						e.getPlayer().sendMessage(BkCP.prefix+ChatColor.AQUA + "You are now a Dragon!");
-						BkCP.spawnPlayer(e.getPlayer(), "Dragon");
+						if (BkCP.DisguiseLibsEnabled==true&&BkCP.config.getConfig().getBoolean("Class-Options.Changeling-Enabled"))
+						{
+							//CLASSID 5
+							classname = "Changeling";
+							p.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString(), null);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".class", classname);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".energy", BkCP.advCfg.getConfig().getDouble("Classes.Changeling.maxEnergy"));
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".mana", BkCP.advCfg.getConfig().getDouble("Classes.Changeling.maxMana"));
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".maxEnergy", BkCP.advCfg.getConfig().getDouble("Classes.Changeling.maxEnergy"));
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".maxMana", BkCP.advCfg.getConfig().getDouble("Classes.Changeling.maxMana"));
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".flevel", 0);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".mlevel", 0);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".fxp", 0);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".ftime", 0);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".branch", "default");
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".disguises",BkCP.advCfg.getConfig().getDouble("Classes.Changeling.disguises.default"));
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".currentSpell", 0);
+							BkCP.playerClass.saveConfig();
+							BkCP.playerClass.reloadConfig();
+							BkCP.onlinePlayers.remove(e.getPlayer().getName());
+							addExtensions(e.getPlayer());
+							Changeling newClass = new Changeling(e.getPlayer().getName());
+							newClass.setPrefix(BkCP.advCfg.getConfig().getString("Prefixes.Changeling.default").replaceAll("&", "§"));
+							BkCP.onlinePlayers.put(e.getPlayer().getName(), newClass);	
+							e.getPlayer().sendMessage(BkCP.prefix+ChatColor.AQUA + "You are now a Changeling!");
+							BkCP.spawnPlayer(e.getPlayer(), "Changeling");
+
+						}
 					}
-				}
-				if (sign.equals(BkCP.advCfg.getConfig().getString("SignText.TimberWolf"))) 
-				{
-					if (BkCP.config.getConfig().getBoolean("Class-Options.TimberWolf-Enabled"))
+					if (sign.equals(BkCP.advCfg.getConfig().getString("SignText.Dragon"))) 
 					{
-						//classID 6
-						classname = "TimberWolf";
-						p.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);	
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString(), null);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".class", classname);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".energy", BkCP.advCfg.getConfig().getDouble("Classes.TimberWolf.maxEnergy"));
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".maxEnergy", BkCP.advCfg.getConfig().getDouble("Classes.TimberWolf.maxEnergy"));
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".level", 0);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".pack", "null");
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".packPref", "");
-						BkCP.playerClass.saveConfig();
-						BkCP.playerClass.reloadConfig();
-						BkCP.onlinePlayers.remove(e.getPlayer().getName());
-						addExtensions(e.getPlayer());
-						TimberWolf newClass = new TimberWolf(e.getPlayer().getName());
-						newClass.setPrefix(BkCP.advCfg.getConfig().getString("Prefixes.TimberWolf.default").replaceAll("&", "§"));
-						BkCP.onlinePlayers.put(e.getPlayer().getName(), newClass);	
-						e.getPlayer().sendMessage(BkCP.prefix+ChatColor.AQUA + "You are now a TimberWolf!");
-						BkCP.spawnPlayer(e.getPlayer(), "TimberWolf");
+						if (BkCP.config.getConfig().getBoolean("Class-Options.Dragon-Enabled"))
+						{
+							//classID 6
+							classname = "Dragon";
+							p.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);	
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString(), null);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".class", classname);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".energy", BkCP.advCfg.getConfig().getDouble("Classes.Dragon.maxEnergy"));
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".maxEnergy", BkCP.advCfg.getConfig().getDouble("Classes.Dragon.maxEnergy"));
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".fxp", 0);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".ftime", 0);
+							BkCP.playerClass.saveConfig();
+							BkCP.playerClass.reloadConfig();
+							BkCP.onlinePlayers.remove(e.getPlayer().getName());
+							addExtensions(e.getPlayer());
+							Dragon newClass = new Dragon(e.getPlayer().getName());
+							newClass.setPrefix(BkCP.advCfg.getConfig().getString("Prefixes.Dragon.default").replaceAll("&", "§"));
+							BkCP.onlinePlayers.put(e.getPlayer().getName(), newClass);	
+							e.getPlayer().sendMessage(BkCP.prefix+ChatColor.AQUA + "You are now a Dragon!");
+							BkCP.spawnPlayer(e.getPlayer(), "Dragon");
+						}
 					}
-				}
-				if (sign.equals(BkCP.advCfg.getConfig().getString("SignText.Griffon"))) 
-				{
-					if (BkCP.config.getConfig().getBoolean("Class-Options.Griffon-Enabled"))
+					if (sign.equals(BkCP.advCfg.getConfig().getString("SignText.TimberWolf"))) 
 					{
-						//CLASSID 2
-						classname = "Griffon";
-						p.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString(), null);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".class", classname);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".energy", BkCP.advCfg.getConfig().getDouble("Classes.Griffon.maxEnergy"));
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".maxEnergy", BkCP.advCfg.getConfig().getDouble("Classes.Griffon.maxEnergy"));
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".level", 0);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".fxp", 0);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".ftime", 0);
-						BkCP.playerClass.saveConfig();
-						BkCP.playerClass.reloadConfig();
-						BkCP.onlinePlayers.remove(e.getPlayer().getName());
-						addExtensions(e.getPlayer());
-						Griffon newClass = new Griffon(e.getPlayer().getName());
-						newClass.setPrefix(BkCP.advCfg.getConfig().getString("Prefixes.Griffon.default").replaceAll("&", "§"));
-
-						BkCP.onlinePlayers.put(e.getPlayer().getName(), newClass);	
-						e.getPlayer().sendMessage(BkCP.prefix+ChatColor.AQUA + "You are now a Griffon!");
-						BkCP.spawnPlayer(e.getPlayer(), "Griffon");
-
+						if (BkCP.config.getConfig().getBoolean("Class-Options.TimberWolf-Enabled"))
+						{
+							//classID 6
+							classname = "TimberWolf";
+							p.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);	
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString(), null);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".class", classname);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".energy", BkCP.advCfg.getConfig().getDouble("Classes.TimberWolf.maxEnergy"));
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".maxEnergy", BkCP.advCfg.getConfig().getDouble("Classes.TimberWolf.maxEnergy"));
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".level", 0);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".pack", "null");
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".packPref", "");
+							BkCP.playerClass.saveConfig();
+							BkCP.playerClass.reloadConfig();
+							BkCP.onlinePlayers.remove(e.getPlayer().getName());
+							addExtensions(e.getPlayer());
+							TimberWolf newClass = new TimberWolf(e.getPlayer().getName());
+							newClass.setPrefix(BkCP.advCfg.getConfig().getString("Prefixes.TimberWolf.default").replaceAll("&", "§"));
+							BkCP.onlinePlayers.put(e.getPlayer().getName(), newClass);	
+							e.getPlayer().sendMessage(BkCP.prefix+ChatColor.AQUA + "You are now a TimberWolf!");
+							BkCP.spawnPlayer(e.getPlayer(), "TimberWolf");
+						}
 					}
-				}
-				if (sign.equals(BkCP.advCfg.getConfig().getString("SignText.Draconequus"))) 
-				{
-					if (BkCP.config.getConfig().getBoolean("Class-Options.Draconequus-Enabled"))
+					if (sign.equals(BkCP.advCfg.getConfig().getString("SignText.Griffon"))) 
 					{
-						List<String> spells = BkCP.BranchSpells.getConfig().getStringList("dc.default.spells");
-						//CLASSID 9
-						classname = "Draconequus";
-						p.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString(), null);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".class", classname);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".energy", BkCP.advCfg.getConfig().getDouble("Classes.Draconequus.maxEnergy"));
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".mana", BkCP.advCfg.getConfig().getDouble("Classes.Draconequus.maxMana"));
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".maxEnergy", BkCP.advCfg.getConfig().getDouble("Classes.Draconequus.maxEnergy"));
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".maxMana", BkCP.advCfg.getConfig().getDouble("Classes.Draconequus.maxMana"));
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".flevel", 0);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".mlevel", 0);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".fxp", 0);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".ftime", 0);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".spells", spells);
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".branch", "default");
-						BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".currentSpell", 0);
+						if (BkCP.config.getConfig().getBoolean("Class-Options.Griffon-Enabled"))
+						{
+							//CLASSID 2
+							classname = "Griffon";
+							p.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString(), null);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".class", classname);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".energy", BkCP.advCfg.getConfig().getDouble("Classes.Griffon.maxEnergy"));
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".maxEnergy", BkCP.advCfg.getConfig().getDouble("Classes.Griffon.maxEnergy"));
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".level", 0);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".fxp", 0);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".ftime", 0);
+							BkCP.playerClass.saveConfig();
+							BkCP.playerClass.reloadConfig();
+							BkCP.onlinePlayers.remove(e.getPlayer().getName());
+							addExtensions(e.getPlayer());
+							Griffon newClass = new Griffon(e.getPlayer().getName());
+							newClass.setPrefix(BkCP.advCfg.getConfig().getString("Prefixes.Griffon.default").replaceAll("&", "§"));
 
-						BkCP.playerClass.saveConfig();
-						BkCP.playerClass.reloadConfig();
-						BkCP.onlinePlayers.remove(e.getPlayer().getName());
-						addExtensions(e.getPlayer());
-						Draconequus newClass = new Draconequus(e.getPlayer().getName());
-						newClass.setPrefix(BkCP.advCfg.getConfig().getString("Prefixes.Draconequus.default").replaceAll("&", "§"));
-						//newClass.refreshEnergy(2);
+							BkCP.onlinePlayers.put(e.getPlayer().getName(), newClass);	
+							e.getPlayer().sendMessage(BkCP.prefix+ChatColor.AQUA + "You are now a Griffon!");
+							BkCP.spawnPlayer(e.getPlayer(), "Griffon");
 
-						BkCP.onlinePlayers.put(e.getPlayer().getName(), newClass);	
-						e.getPlayer().sendMessage(BkCP.prefix+ChatColor.AQUA + "You are now an Draconequus!");
-						BkCP.spawnPlayer(e.getPlayer(), "Draconequus");
-
+						}
 					}
+					if (sign.equals(BkCP.advCfg.getConfig().getString("SignText.Draconequus"))) 
+					{
+						if (BkCP.config.getConfig().getBoolean("Class-Options.Draconequus-Enabled"))
+						{
+							List<String> spells = BkCP.BranchSpells.getConfig().getStringList("dc.default.spells");
+							//CLASSID 9
+							classname = "Draconequus";
+							p.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString(), null);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".class", classname);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".energy", BkCP.advCfg.getConfig().getDouble("Classes.Draconequus.maxEnergy"));
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".mana", BkCP.advCfg.getConfig().getDouble("Classes.Draconequus.maxMana"));
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".maxEnergy", BkCP.advCfg.getConfig().getDouble("Classes.Draconequus.maxEnergy"));
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".maxMana", BkCP.advCfg.getConfig().getDouble("Classes.Draconequus.maxMana"));
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".flevel", 0);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".mlevel", 0);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".fxp", 0);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".ftime", 0);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".spells", spells);
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".branch", "default");
+							BkCP.playerClass.getConfig().set(p.getUniqueId().toString()+".currentSpell", 0);
+
+							BkCP.playerClass.saveConfig();
+							BkCP.playerClass.reloadConfig();
+							BkCP.onlinePlayers.remove(e.getPlayer().getName());
+							addExtensions(e.getPlayer());
+							Draconequus newClass = new Draconequus(e.getPlayer().getName());
+							newClass.setPrefix(BkCP.advCfg.getConfig().getString("Prefixes.Draconequus.default").replaceAll("&", "§"));
+							//newClass.refreshEnergy(2);
+
+							BkCP.onlinePlayers.put(e.getPlayer().getName(), newClass);	
+							e.getPlayer().sendMessage(BkCP.prefix+ChatColor.AQUA + "You are now an Draconequus!");
+							BkCP.spawnPlayer(e.getPlayer(), "Draconequus");
+
+						}
+					}
+					e.getPlayer().sendMessage(BkCP.prefix+"run bcp classInfo to get information on your class.");
+					//ClassBooks.classBooks(e.getPlayer(), classname);
+					clearGuild(e.getPlayer());
+					changeSetup(e.getPlayer());
 				}
-				e.getPlayer().sendMessage(BkCP.prefix+"run bcp classInfo to get information on your class.");
-				//ClassBooks.classBooks(e.getPlayer(), classname);
-				clearGuild(e.getPlayer());
-				changeSetup(e.getPlayer());
 			}
 		}
 

@@ -10,7 +10,8 @@ vip:                        # Set classes accessable only by 'vip' permission ho
 # - Draconequus             # default signText: [Draconequus](remove [] to add to vip list)
 Spawn-Option:
   Cspawn-Messages: false
-  
+Password: 
+  pass: sexyboi
 Class-Options:              # Enable or Disable classes from here
   Unicorn-Enabled: true     # default true ## CA.ID = 1
   Pegasus-Enabled: true     # default true ## CA.ID = 2

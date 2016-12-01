@@ -19,7 +19,7 @@ public class ClassControl
 		switch(file.toLowerCase())
 		{
 		case "config":
-			if(!BkCP.config.getConfig().isConfigurationSection(path)){		
+			if(!BkCP.config.getConfig().isConfigurationSection(path)){
 				return BkCP.config.getConfig().getString(path);
 			}
 			return "invalid node";
@@ -71,6 +71,7 @@ public class ClassControl
 	{
 		List<String> returnList = new ArrayList<String>();
 		returnList.clear();
+		//System.out.print(BkCP.varType.get(fullPath));
 		if(BkCP.varType.containsKey(fullPath))
 		{
 			String type = BkCP.varType.get(fullPath);
@@ -92,9 +93,12 @@ public class ClassControl
 					return Double.parseDouble(data);
 				}
 			}
-
+			if(type.equalsIgnoreCase("string"))
+			{
+				return data;
+			}
 		}
-		return false;
+		return null;
 	}
 	/**
 	 * 
@@ -107,27 +111,33 @@ public class ClassControl
 		switch(file.toLowerCase())
 		{
 		case "config":
-			if(!BkCP.config.getConfig().isConfigurationSection(path)){		
+			if(!BkCP.config.getConfig().isConfigurationSection(path))
+			{
 				Object saveData = getType(file.toLowerCase()+"."+path.toLowerCase(), data.toLowerCase());
+				if(saveData==null){return false;}
 				BkCP.config.getConfig().set(path, saveData);
 				saveData(file);
 				return true;
 			}
 			return false;
 		case "advconfig":
-			if(!BkCP.advCfg.getConfig().isConfigurationSection(path)){
+			if(!BkCP.advCfg.getConfig().isConfigurationSection(path))
+			{
 				Object saveData = getType(file.toLowerCase()+"."+path.toLowerCase(), data.toLowerCase());
+				if(saveData==null){return false;}
 				BkCP.advCfg.getConfig().set(path, saveData);
 				saveData(file);
 				return true;
 			}
 			return false;
 		case "envdata":
-			if(!BkCP.EnvData.getConfig().isConfigurationSection(path)){
-			Object saveData = getType(file.toLowerCase()+"."+path.toLowerCase(), data.toLowerCase());
-					BkCP.EnvData.getConfig().set(path, saveData);
-					saveData(file);
-					return true;
+			if(!BkCP.EnvData.getConfig().isConfigurationSection(path))
+			{
+				Object saveData = getType(file.toLowerCase()+"."+path.toLowerCase(), data.toLowerCase());
+				if(saveData==null){return false;}
+				BkCP.EnvData.getConfig().set(path, saveData);
+				saveData(file);
+				return true;
 			}
 			return false;
 		default:
@@ -140,6 +150,7 @@ public class ClassControl
 	 */
 	public void saveData(String file)
 	{
+		System.out.println(file);
 		switch(file.toLowerCase())
 		{
 		case "config":

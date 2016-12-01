@@ -1,6 +1,7 @@
 config:
  - vip,list
  - spawn-option.cspawn-messages, boolean
+ - password.pass, string
  - class-options.unicorn-enabled, boolean
  - class-options.pegasus-enabled, boolean
  - class-options.earth-enabled, boolean

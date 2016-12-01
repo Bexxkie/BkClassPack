@@ -3,9 +3,9 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/ParticleEffect Library"/>
-	<classpathentry kind="lib" path="B:/PROGRAMMING/JAVA/Decompiles/Spigot_1.10/Bukkit/target/bukkit-1.10-R0.1-SNAPSHOT-shaded.jar"/>
-	<classpathentry kind="lib" path="B:/PROGRAMMING/JAVA/Decompiles/Spigot_1.10/CraftBukkit/target/craftbukkit-1.10-R0.1-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="B:/PROGRAMMING/JAVA/Eclipse-References/LibsDisguises 1.1.jar"/>
-	<classpathentry kind="lib" path="B:/PROGRAMMING/JAVA/Eclipse-References/ProtocolLib1.1.jar"/>
+	<classpathentry kind="lib" path="L:/Files/PROGRAMMING/JAVA/Decompiles/Spigot_1.10/Bukkit/target/bukkit-1.10-R0.1-SNAPSHOT-shaded.jar"/>
+	<classpathentry kind="lib" path="L:/Files/PROGRAMMING/JAVA/Decompiles/Spigot_1.10/CraftBukkit/target/craftbukkit-1.10-R0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="L:/Files/PROGRAMMING/JAVA/Eclipse-References/LibsDisguises 1.1.jar"/>
+	<classpathentry kind="lib" path="L:/Files/PROGRAMMING/JAVA/Eclipse-References/ProtocolLib1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

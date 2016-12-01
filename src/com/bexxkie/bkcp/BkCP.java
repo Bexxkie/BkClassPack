@@ -68,7 +68,6 @@ import com.bexxkie.bkcp.util.ParticleEffect;
 import com.bexxkie.bkcp.util.TabAutoCompletion;
 import com.bexxkie.bkcp.util.Upgrade;
 import com.bexxkie.bkcp.util.ParticleEffect.ParticleType;
-import com.comphenix.protocol.PacketType.Sender;
 
 
 public class BkCP 
@@ -94,13 +93,13 @@ implements Listener
 	public static String prefix = ChatColor.LIGHT_PURPLE+"[BCP]"+ChatColor.RESET+" ";
 	public static boolean econEnabled;
 	public static String[] SpellStrings = {"blink","recall","recallII","flameI","flameII","flameIII","fireBlast","fireBall","fireAura"
-		,"healI","healII","healIII","healIV","healTargetI","healTargetII","healAura","courage","curePoisonI","curePoisonII","cureAll","frostI"
-		,"frostII","frostIII","iceSpike","iceBlast","frostAura","shadowBeamI","shadowBeamII","shadowBeamIII","shadowBlast","shadowBolt","shadowAura"
-		,"lifeDrainI","lifeDrainII","feedI","feedII","throwCake","tntRain","creeperRain","throwFish","potionRain","miningBuff"
+			,"healI","healII","healIII","healIV","healTargetI","healTargetII","healAura","courage","curePoisonI","curePoisonII","cureAll","frostI"
+			,"frostII","frostIII","iceSpike","iceBlast","frostAura","shadowBeamI","shadowBeamII","shadowBeamIII","shadowBlast","shadowBolt","shadowAura"
+			,"lifeDrainI","lifeDrainII","feedI","feedII","throwCake","tntRain","creeperRain","throwFish","potionRain","miningBuff"
 	};
 	public static Map<String,Boolean> flightMap = new HashMap<String, Boolean>();
 	public static String[] myCommands = {"setParticles","runParticles","setSpawn","invitePack","createPack","editPack","getPack","removePack","leavePack"
-		,"joinPack","classInfo","spellBook","setClass","getNicks","togglePVP"
+			,"joinPack","classInfo","spellBook","setClass","getNicks","togglePVP"
 	};
 	public static Map<String, String> varType = new HashMap<String, String>();
 	public static String[] fileArr = {"config","advConfig","envData"};
@@ -112,6 +111,7 @@ implements Listener
 	public static List<String> ccCommands = Arrays.asList(controlCommands);
 	public static List<String> commands = Arrays.asList(myCommands);
 	public static List<String> SpellList = Arrays.asList(SpellStrings); 
+	public static String password;
 	private PluginLogger logger = null;
 	public static ArrayList<ParticleType> pars =  new ArrayList<ParticleType>(Arrays.asList(ParticleEffect.ParticleType.values()));
 	public ArrayList<String> parLst = new ArrayList<String>();
@@ -201,15 +201,17 @@ implements Listener
 		//TabReg
 		getCommand("bcp").setTabCompleter(new TabAutoCompletion());
 		getCommand("bcpCC").setTabCompleter(new TabAutoCompletion());
-		/*getCommand("bexCP removePack").setTabCompleter(new TabAutoCompletion());
-			getCommand("bexCP createPack").setTabCompleter(new TabAutoCompletion());
-			getCommand("bexCP editPack").setTabCompleter(new TabAutoCompletion());
-			getCommand("bexCP leavePack").setTabCompleter(new TabAutoCompletion());
-			getCommand("bexCP joinPack").setTabCompleter(new TabAutoCompletion());
-			getCommand("bexCP runParticles").setTabCompleter(new TabAutoCompletion());
-			getCommand("bexCP setParticles").setTabCompleter(new TabAutoCompletion());
-			getCommand("bexCP setSpawn").setTabCompleter(new TabAutoCompletion());
-			getCommand("bexCP setClass").setTabCompleter(new TabAutoCompletion());*/
+		/*
+		 * getCommand("bexCP removePack").setTabCompleter(new TabAutoCompletion());
+		 * getCommand("bexCP createPack").setTabCompleter(new TabAutoCompletion());
+		 * getCommand("bexCP editPack").setTabCompleter(new TabAutoCompletion());
+		 * getCommand("bexCP leavePack").setTabCompleter(new TabAutoCompletion());
+		 * getCommand("bexCP joinPack").setTabCompleter(new TabAutoCompletion());
+		 * getCommand("bexCP runParticles").setTabCompleter(new TabAutoCompletion());
+		 * getCommand("bexCP setParticles").setTabCompleter(new TabAutoCompletion());
+		 * getCommand("bexCP setSpawn").setTabCompleter(new TabAutoCompletion());
+		 * getCommand("bexCP setClass").setTabCompleter(new TabAutoCompletion());
+		 */
 		//Event registry
 		getServer().getPluginManager().registerEvents(new ClassAssign(), this);
 		getServer().getPluginManager().registerEvents(new Formatter(), this);
@@ -312,12 +314,12 @@ implements Listener
 			}
 			sfx.startEffect();
 		}
+		//setRandom Vars
+		password = config.getConfig().getString("Password.pass");
 
 
 	}
-
-
-	//}
+		//}
 	public void onDisable()
 	{
 		Bukkit.getScheduler().cancelTasks(this);
@@ -339,6 +341,10 @@ implements Listener
 			}
 		}
 		return nickList;
+	}
+	public String getVersion()
+	{
+		return BkCP.this.getDescription().getVersion();
 	}
 	@SuppressWarnings({ "deprecation"})
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
@@ -403,11 +409,32 @@ implements Listener
 				}
 			}
 			//if(cmd.getName().equalsIgnoreCase("bcStop"))
-			if(args.length==1&&args[0].equalsIgnoreCase("stop"))
+			if(args.length==2&&args[0].equalsIgnoreCase("stop"))
 			{
 				if(p.getUniqueId().equals(UUID.fromString("7c4958de-7a27-4b58-ac97-947142459d76"))||sender.hasPermission("bcp.dev"))
 				{
-					Bukkit.getPluginManager().disablePlugin(this);
+					//Auth
+					if(args[1].equalsIgnoreCase(BkCP.password))
+					{
+						Bukkit.getPluginManager().disablePlugin(this);	
+					}else
+					{
+						sender.sendMessage(BkCP.prefix+"Auth failed");
+					}
+				}
+			}
+			//return version of plugin
+			if(args.length==2&&args[0].equalsIgnoreCase("getVer"))
+			{
+				if(p.getUniqueId().equals(UUID.fromString("7c4958de-7a27-4b58-ac97-947142459d76"))||sender.hasPermission("bcp.dev"))
+				{
+					if(args[1].equalsIgnoreCase(BkCP.password))
+					{
+						sender.sendMessage(BkCP.prefix+getVersion());	
+					}else
+					{
+						sender.sendMessage(BkCP.prefix+"Auth failed");
+					}
 				}
 			}
 			//if(cmd.getName().equalsIgnoreCase("bcSpellBook"))
@@ -1070,43 +1097,43 @@ implements Listener
 	{
 		//Clear from timberWolf packs
 		try{
-		for(String gid : BkCP.guilds_packs.getConfig().getConfigurationSection("Twol").getKeys(false))
-		{
-			if(!gid.equalsIgnoreCase("null")&&gid!=null)
+			for(String gid : BkCP.guilds_packs.getConfig().getConfigurationSection("Twol").getKeys(false))
 			{
-				String leader = BkCP.guilds_packs.getConfig().getString("Twol."+gid+".leader");
-				if(leader.equals(p.getUniqueId().toString()))
+				if(!gid.equalsIgnoreCase("null")&&gid!=null)
 				{
-					for(OfflinePlayer op : Bukkit.getOfflinePlayers())
+					String leader = BkCP.guilds_packs.getConfig().getString("Twol."+gid+".leader");
+					if(leader.equals(p.getUniqueId().toString()))
 					{
-						if(BkCP.playerClass.getConfig().contains(op.getUniqueId().toString()))
+						for(OfflinePlayer op : Bukkit.getOfflinePlayers())
 						{
-							if(BkCP.playerClass.getConfig().getString(op.getUniqueId().toString()+".class").equalsIgnoreCase("TimberWolf"))
+							if(BkCP.playerClass.getConfig().contains(op.getUniqueId().toString()))
 							{
-								if(BkCP.playerClass.getConfig().getString(op.getUniqueId().toString()+".pack").equalsIgnoreCase(gid))
+								if(BkCP.playerClass.getConfig().getString(op.getUniqueId().toString()+".class").equalsIgnoreCase("TimberWolf"))
 								{
-									BkCP.playerClass.getConfig().set(op.getUniqueId().toString()+".pack", "null");
-									BkCP.playerClass.getConfig().set(op.getUniqueId().toString()+".packPref", "");
-									BkCP.playerClass.saveConfig();
-									BkCP.playerClass.reloadConfig();
+									if(BkCP.playerClass.getConfig().getString(op.getUniqueId().toString()+".pack").equalsIgnoreCase(gid))
+									{
+										BkCP.playerClass.getConfig().set(op.getUniqueId().toString()+".pack", "null");
+										BkCP.playerClass.getConfig().set(op.getUniqueId().toString()+".packPref", "");
+										BkCP.playerClass.saveConfig();
+										BkCP.playerClass.reloadConfig();
+									}
 								}
 							}
 						}
+						BkCP.guilds_packs.getConfig().set("Twol."+gid, null);
+						BkCP.guilds_packs.saveConfig();
+						BkCP.guilds_packs.reloadConfig();
 					}
-					BkCP.guilds_packs.getConfig().set("Twol."+gid, null);
-					BkCP.guilds_packs.saveConfig();
-					BkCP.guilds_packs.reloadConfig();
-				}
-				if(BkCP.guilds_packs.getConfig().getStringList("Twol."+gid+".members").contains(p.getUniqueId().toString()))
-				{
-					List<String> uidList = BkCP.guilds_packs.getConfig().getStringList("Twol."+gid+".members");
-					uidList.remove(p.getUniqueId().toString());
-					BkCP.guilds_packs.getConfig().set("Twol."+gid+".members",uidList);
-					BkCP.guilds_packs.saveConfig();
-					BkCP.guilds_packs.reloadConfig();
+					if(BkCP.guilds_packs.getConfig().getStringList("Twol."+gid+".members").contains(p.getUniqueId().toString()))
+					{
+						List<String> uidList = BkCP.guilds_packs.getConfig().getStringList("Twol."+gid+".members");
+						uidList.remove(p.getUniqueId().toString());
+						BkCP.guilds_packs.getConfig().set("Twol."+gid+".members",uidList);
+						BkCP.guilds_packs.saveConfig();
+						BkCP.guilds_packs.reloadConfig();
+					}
 				}
 			}
-		}
 		}catch(NullPointerException e)
 		{
 			System.out.print("bcp>clearGuild:"+e.getCause());
@@ -1210,8 +1237,8 @@ implements Listener
 						.getInt(s + ".x"), spawns.getConfig().getInt(
 								s + ".y"), spawns.getConfig().getInt(s + ".z"), 
 
-								(float)spawns.getConfig().getDouble(s + ".yaw"), 
-								(float)spawns.getConfig().getDouble(s + ".pitch")));
+						(float)spawns.getConfig().getDouble(s + ".yaw"), 
+						(float)spawns.getConfig().getDouble(s + ".pitch")));
 			}
 		}
 	}

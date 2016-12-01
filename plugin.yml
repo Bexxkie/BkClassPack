@@ -1,5 +1,5 @@
 name: BkClassPack
-version: 7.0
+version: 7.1
 description: Enhances the vanilla experience by adding unique abilities across a variety of different classes.
 author: Bexxkie [Brian]
 website: https://github.com/BrianKG/BkClassPack.git
@@ -30,6 +30,8 @@ commands:
        description: join a pack, if you are invited
   bcp Stop:
        description: stop the plugin from running (op+)
+  bcp GetVer:
+       description: get the version of the plugin (op+)
   bcp ClassInfo:
        description: get a classBook
   bcp SpellBook:
