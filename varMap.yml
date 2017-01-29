@@ -12,6 +12,7 @@ config:
  - class-options.griffon-enabled, boolean
  - class-options.draconequus-enabled, boolean
  - module.upgrade, boolean
+ - module.buildingExtended, boolean
  - module.togglepvp, boolean
  - module.sfx.enabled, boolean
  - module.sfx.maxspeed, double

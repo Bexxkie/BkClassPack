@@ -28,7 +28,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
-
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginLogger;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -57,6 +56,7 @@ import com.bexxkie.bkcp.interaction.ProjectileSpellDamage;
 import com.bexxkie.bkcp.interaction.Research;
 import com.bexxkie.bkcp.interaction.SpellUtil;
 import com.bexxkie.bkcp.interaction.TntRainCancel;
+import com.bexxkie.bkcp.modules.building.BuildingMain;
 import com.bexxkie.bkcp.modules.control.ClassControl;
 import com.bexxkie.bkcp.modules.economy.interaction.EconControl;
 import com.bexxkie.bkcp.modules.pvpControl.PvpControlMain;
@@ -65,9 +65,13 @@ import com.bexxkie.bkcp.util.ClassBooks;
 import com.bexxkie.bkcp.util.ConfigMk;
 import com.bexxkie.bkcp.util.Formatter;
 import com.bexxkie.bkcp.util.ParticleEffect;
-import com.bexxkie.bkcp.util.TabAutoCompletion;
 import com.bexxkie.bkcp.util.Upgrade;
+import com.bexxkie.bkcp.util.VeryifyIntegrity;
+
+import sun.invoke.util.VerifyType;
+
 import com.bexxkie.bkcp.util.ParticleEffect.ParticleType;
+import com.bexxkie.bkcp.util.TabAutoCompletion;
 
 
 public class BkCP 
@@ -83,6 +87,8 @@ implements Listener
 	public static ConfigMk guilds_packs;
 	public static ConfigMk EnvData;
 	public static ConfigMk VariableMap;
+	public static ConfigMk config_DefaultKeyCheck;
+	public static ConfigMk advCfg_DefaultKeyCheck;
 	public static HashMap<String, ClassBase> onlinePlayers = new HashMap<String, ClassBase>();
 	public static HashMap<String, Location> pSpawns = new HashMap<String, Location>();
 	public static HashMap<String, Integer> miningEffect = new HashMap<String, Integer>();
@@ -121,6 +127,8 @@ implements Listener
 	SfxPlay sfx = new SfxPlay();
 	public static boolean DisguiseLibsEnabled=false;
 	public static ClassControl cControl = new ClassControl();
+	public static VeryifyIntegrity FileIntegrityVerify = new VeryifyIntegrity();
+	//public static UberRender uRender = new UberRender();
 	@SuppressWarnings("unchecked")
 	public void onEnable()
 	{
@@ -178,6 +186,16 @@ implements Listener
 		saveDefaultConfig("varMap.yml",null);
 		VariableMap.reloadConfig();
 		reloadSpawns();
+		config_DefaultKeyCheck = new ConfigMk(this, "configDefault(DO NOT TOUCH).yml", null);
+		saveDefaultConfig("configDefault(DO NOT TOUCH).yml", null);
+		config_DefaultKeyCheck.reloadConfig();
+		advCfg_DefaultKeyCheck = new ConfigMk(this, "advCfgDefault(DO NOT TOUCH).yml", null);
+		saveDefaultConfig("advCfgDefault(DO NOT TOUCH).yml", null);
+		advCfg_DefaultKeyCheck.reloadConfig();
+		
+		
+		//VerifyFileIntegrity
+		FileIntegrityVerify.INIT();
 		econEnabled = config.getConfig().getBoolean("Module.Economy-Enabled");
 		int millis = advCfg.getConfig().getInt("classDataAutoSave");
 		//Display saveDataInterval
@@ -283,6 +301,11 @@ implements Listener
 		{
 			getServer().getPluginManager().registerEvents(new EconControl(), this);
 		}
+		if (config.getConfig().getBoolean("Module.buildingExtended"))
+		{
+			System.out.println("buildingExtended");
+			getServer().getPluginManager().registerEvents(new BuildingMain(), this);
+		}
 		//continue
 		instance = this;
 		for (Player p : Bukkit.getOnlinePlayers()) 
@@ -319,7 +342,7 @@ implements Listener
 
 
 	}
-		//}
+	//}
 	public void onDisable()
 	{
 		Bukkit.getScheduler().cancelTasks(this);

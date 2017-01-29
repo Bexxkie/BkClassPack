@@ -1,0 +1,117 @@
+classDataAutoSave: 3600000     # Time to autoSave classData 'deft 3600000' (in mis)
+                               # Conversion formula:: mis/1000=sec/60=min
+                               
+upgrade: false                 # upgrade from P3Pplus
+fxpTarget: 100                 # required flight exp to level up
+flightCost: .5                 # energyDrain(x2)/s 
+cFlightCost: 10                # required levels to creativeFly
+flightTime: 3600               # time to creativeFly seconds (default; 1h)
+SignText:                      # directly affects vip classControl (see config.yml>vip)
+  Unicorn: [Unicorn]           # default signText: [Unicorn]    (Must have [] encapsulating String)
+  Pegasus: [Pegasus]           # default signText: [Pegasus]    (Must have [] encapsulating String)
+  Earth: [Earth]               # default signText: [Earth]      (Must have [] encapsulating String)
+  Alicorn: [Alicorn]           # default signText: [Alicorn]    (Must have [] encapsulating String)
+  Changeling: [Changeling]     # default signText: [Changeling] (Must have [] encapsulating String)
+  Dragon: [Dragon]             # default signText: [Dragon]     (Must have [] encapsulating String)
+  TimberWolf: [TimberWolf]     # default signText: [TimberWolf] (Must have [] encapsulating String)
+  Griffon: [Griffon]           # default signText: [Griffon]    (Must have [] encapsulating String)
+  Draconequus: [Draconequus]   # default signText: [Draconequus](Must have [] encapsulating String)
+Classes:                         # Determine default classValues
+  Unicorn:                       #------------------------------------------------------------------
+    maxMana: 50.0    #'deft 50'  # Starting mana (increases with levels)
+    maxHealth: 20.0  #'deft 20'  # Maximum health as this class (default game value = 20)
+  Pegasus:                       #------------------------------------------------------------------
+    maxEnergy: 50.0  #'deft 50'  # Starting energy (increases with levels)
+    maxHealth: 20.0  #'deft 20'  # Maximum health as this class (default game value = 20)
+    flight: true     #'deft true'# true/false should use normal flight(true) vs my method (false)
+  Earth:                         #------------------------------------------------------------------
+    maxEnergy: 50.0  #'deft 50'  # Starting energy (increases with levels)
+    maxHealth: 30.0  #'deft 30'  # Maximum health as this class (default game value = 20)
+  Alicorn:                       #------------------------------------------------------------------
+    maxEnergy: 75.0  #'deft 75'  # Starting energy (increases with levels)
+    maxMana: 75.0    #'deft 75'  # Starting mana (increases with levels)
+    maxHealth: 30.0  #'deft 30'  # Maximum health as this class (default game value = 20)
+    flight: true     #'deft true'# true/false should use normal flight(true) vs my method (false)
+  Dragon:                        #------------------------------------------------------------------
+    maxEnergy: 75.0  #'deft 75'  # Starting energy (increases with levels)
+    maxHealth: 30.0  #'deft 30'  # Maximum health as this class (default game value = 20)
+    flight: true     #'deft true'# true/false should use normal flight(true) vs my method (false)
+  TimberWolf:                    #------------------------------------------------------------------
+    maxEnergy: 50.0  #'deft 50'  # Starting energy (increases with levels)
+    maxHealth: 15.0  #'deft 15'  # Maximum health as this class (default game value = 20)
+    invisTime: 10    #'deft 10'  # Time to remain invisible while crouched (in seconds)
+    alwaysRun: 1     #'deft 1'   # Boolean increased speed? [0/1]
+  Griffon:                       #------------------------------------------------------------------
+    maxEnergy: 75.0  #'deft 75'  # Starting energy (increases with levels)
+    maxHealth: 30.0  #'deft 30'  # Maximum health as this class (default game value = 20)
+    flight: true     #'deft true'# true/false should use normal flight(true) vs my method (false)
+  Draconequus:                   #------------------------------------------------------------------
+    maxEnergy: 75.0  #'deft 75'  # Starting energy (increases with levels)
+    maxMana: 75.0    #'deft 75'  # Starting mana (increases with levels)
+    maxHealth: 30.0  #'deft 30'  # Maximum health as this class (default game value = 20)
+    flight: true     #'deft true'# true/false should use normal flight(true) vs my method (false)
+  Changeling:                    #------------------------------------------------------------------
+    maxEnergy: 50.0   #'deft 50'  # Starting energy (increases with levels)
+    maxMana: 75.0     #'deft 75'  # Starting mana (increases with levels)
+    maxHealth: 25.0   #'deft 25'  # Maximum health as this class (default game value = 20)
+    flight: true     #'deft true'# true/false should use normal flight(true) vs my method (false)
+    disguises:
+     default:
+     #  uncomment desired disguises 
+      - Bat
+      - Blaze
+      - CaveSpider
+     # - Chicken
+     # - Cow
+     # - Creeper
+     # - Enderman
+     # - Endermite
+     # - Guardian
+     # - EntityHorse
+     # - IronGolem
+     # - LavaSlime
+     # - Pig
+     # - PigZombie
+     # - Rabbit
+     # - Sheep
+     # - Silverfish
+     # - Skeleton
+     # - Slime
+     # - Snowman
+     # - Spider
+     # - Squid
+     # - Villager
+     # - Witch
+     # - Wolf
+     # - Zombie
+Prefixes:
+  Unicorn:
+     default: "[&6Unicorn&f] "
+     protector: "[&a&ka&r&6Unicorn&f] "
+     healer: "[&e&ka&r&6Unicorn&f] "
+     illusionist: "[&3&ka&r&6Unicorn&f] "
+     destruction: "[&4&ka&r&6Unicorn&f] "
+     fire: "[&c&ka&r&6Unicorn&f] "
+     ice: "[&b&ka&r&6Unicorn&f] "
+     shadow: "[&7&ka&r&6Unicorn&f] "
+  Pegasus: 
+     default: "[&bPegasus&f] "
+  Earth: 
+     default: "[&aEarth&f] "
+     miner: "[&7&ka&r&aEarth&f] "
+     farmer: "[&2&ka&r&aEarth&f] "
+     breeder: "[&c&ka&r&aEarth&f] "
+  Alicorn:
+     default: "[&eAlicorn&f] "
+     corrupter: "[&7&ka&r&eAlicorn&f] "
+     saviour: "[&6&ka&r&eAlicorn&f] "
+  Changeling:
+     default: "[&aChangeling&f] "
+  Dragon:
+     default: "[&cDragon&f] "
+  TimberWolf:
+     default: "[&aTimberwolf&f] "
+  Griffon:
+     default: "[&eGriffonf&f] "
+  Draconequus:
+     default: "[&cDraconequus&f] "
